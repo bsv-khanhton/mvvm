@@ -24,3 +24,11 @@ Sent data to other fragment
             this.param2 = param2
         }
     }
+---------------------------
+Inject
+---------------------------
+* Navigation fragment:
+@Inject lateinit var fragmentAggregator: FragmentAggregator
+
+* Save data into SharedPreferences:
+@Inject lateinit var userCtrl: UserCtrl
