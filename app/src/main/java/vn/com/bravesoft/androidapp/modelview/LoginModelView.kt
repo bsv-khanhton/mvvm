@@ -1,6 +1,5 @@
 package vn.com.bravesoft.androidapp.modelview
 
-import androidx.databinding.ObservableField
 import vn.com.bravesoft.androidapp.model.LoginResponse
 import vn.com.bravesoft.androidapp.model.UserDTO
 import vn.com.bravesoft.androidapp.api.ApiConsumer
@@ -12,18 +11,7 @@ import javax.inject.Inject
 
 class LoginModelView @Inject constructor(val useCase: LoginUseCase) : BaseModelView() {
 
-    val username = ObservableField<String>()
-    val password = ObservableField<String>()
-
     val onLoginSuccessed: SingleLiveEvent<String> = SingleLiveEvent()
-
-    fun login() {
-        if (username.get().isNullOrEmpty() || password.get().isNullOrEmpty()) {
-            onLoadAPIFail.setValue("UserDTO name and password is required")
-        } else {
-            login(UserDTO(username.get() ?: "", password.get() ?: ""))
-        }
-    }
 
     fun login(user: UserDTO) {
         addSubscription(

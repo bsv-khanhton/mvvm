@@ -15,10 +15,11 @@ import vn.com.bravesoft.androidapp.ext.getViewModel
 import vn.com.bravesoft.androidapp.helper.FragmentAggregator
 
 import vn.com.bravesoft.androidapp.base.BaseMVVMFragment
+import vn.com.bravesoft.androidapp.model.UserDTO
 import vn.com.bravesoft.androidapp.modelview.LoginModelView
 import javax.inject.Inject
 
-class LoginFragment : BaseMVVMFragment<LoginModelView>(R.layout.login_layout, vn.com.bravesoft.androidapp.BR.vm) {
+class LoginFragment : BaseMVVMFragment<LoginModelView>(R.layout.login_layout) {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
@@ -39,8 +40,7 @@ class LoginFragment : BaseMVVMFragment<LoginModelView>(R.layout.login_layout, vn
 
     override fun setupObserveModelView(mvvmModelView: LoginModelView?) {
         mvvmModelView?.onLoginSuccessed?.observe(this, Observer{ s ->
-            Toast.makeText(context, s, Toast.LENGTH_SHORT).show()
-            fragmentAggregator.openMainTabHost()
+            fragmentAggregator.openMainTabHost(s)
         }
         )
     }
@@ -48,9 +48,9 @@ class LoginFragment : BaseMVVMFragment<LoginModelView>(R.layout.login_layout, vn
 
     override fun init(view: View) {
         tvTitle.setText("MVVM")
-        viewModel?.username?.set("xyz")
-
-
+        btnLogin.setOnClickListener {
+            viewModel?.login(UserDTO("abc", "12343545"))
+        }
     }
 
     companion object {

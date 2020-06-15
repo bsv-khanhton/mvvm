@@ -1,29 +1,25 @@
 package vn.com.bravesoft.androidapp.ui
 
-import android.os.Bundle
 import android.view.View
 import vn.com.bravesoft.androidapp.R
 import vn.com.bravesoft.androidapp.base.BaseFragment
+import vn.com.bravesoft.androidapp.ext.argument
+import vn.com.bravesoft.androidapp.utils.LogUtil
 
 /**
  * Created by Khanh Ton on 2019-05-28.
  */
 class MainTabHostFragment : BaseFragment(R.layout.main_tab_host_layout) {
 
-    protected override fun init(view: View) {
-
-    }
+    private var param1: String by argument()
 
     companion object {
-
-
-        fun newInstance(): MainTabHostFragment {
-
-            val args = Bundle()
-
-            val fragment = MainTabHostFragment()
-            fragment.arguments = args
-            return fragment
+        fun newInstance(param1: String): MainTabHostFragment  = MainTabHostFragment().apply {
+            this.param1 = param1
         }
+    }
+
+    protected override fun init(view: View) {
+        LogUtil.log("param1: $param1")
     }
 }

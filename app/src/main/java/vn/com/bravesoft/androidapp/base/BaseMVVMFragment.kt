@@ -2,20 +2,16 @@ package vn.com.bravesoft.androidapp.base
 
 import android.os.Bundle
 import android.view.View
-
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 
-abstract class BaseMVVMFragment<M : BaseModelView>(private val rootLayout: Int, private val idVariableBinding: Int) :
+abstract class BaseMVVMFragment<M : BaseModelView>(rootLayout: Int) :
     BaseFragment(rootLayout), LifecycleOwner {
 
     protected var viewModel: M? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        DataBindingUtil.bind<ViewDataBinding>(view)?.setVariable(idVariableBinding, viewModel)
         setupObserveModelViewBase()
         setupObserveModelView(viewModel)
     }
