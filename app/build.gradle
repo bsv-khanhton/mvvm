@@ -35,10 +35,12 @@ android {
         dev {
             applicationId "vn.com.bravesoft.androidappdev"
             manifestPlaceholders = [appname: 'MVVM Dev']
+            buildConfigField "String", "URL_API", '"https://jsonplaceholder.typicode.com"'
         }
         prod {
             applicationId "vn.com.bravesoft.androidapp"
             manifestPlaceholders = [appname: 'MVVM Prod']
+            buildConfigField "String", "URL_API", '"https://jsonplaceholder.typicode.com"'
         }
     }
     applicationVariants.all { variant ->
@@ -97,4 +99,6 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-runtime:2.0.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
     kapt 'androidx.lifecycle:lifecycle-compiler:2.0.0'
+
+    implementation 'com.itkacher.okhttpprofiler:okhttpprofiler:1.0.5'
 }

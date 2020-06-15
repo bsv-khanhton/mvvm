@@ -3,6 +3,7 @@ package vn.com.bravesoft.androidapp.di
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import com.itkacher.okhttpprofiler.OkHttpProfilerInterceptor
 import dagger.Module
 import dagger.Provides
 import io.reactivex.disposables.CompositeDisposable
@@ -95,11 +96,15 @@ class AppModule {
             .writeTimeout(180, TimeUnit.SECONDS)
             .addInterceptor(loggingInterceptor)
             .addInterceptor(applicationInterceptor)
-            .build()
+
+
+        if(BuildConfig.DEBUG){
+            client.addInterceptor(OkHttpProfilerInterceptor())
+        }
 
         return Retrofit.Builder()
-            .baseUrl("https://jsonplaceholder.typicode.com")
-            .client(client)
+            .baseUrl(BuildConfig.URL_API)
+            .client(client.build())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(gsonConverterFactory)
             .build()
