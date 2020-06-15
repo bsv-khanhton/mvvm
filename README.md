@@ -4,7 +4,7 @@ Base code MVVM use Kotlin:
 - RxJava
 - Retrofit
 - Lifecycle
-
+- Support Okhttp profiler
 ## Requirements
 
 Android Studio Version | Android API Version Min
@@ -32,3 +32,4 @@ Inject
 
 * Save data into SharedPreferences:
 @Inject lateinit var userCtrl: UserCtrl
+
