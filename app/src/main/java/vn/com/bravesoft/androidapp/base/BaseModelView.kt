@@ -8,7 +8,6 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import vn.com.bravesoft.androidapp.model.LoginResponse
 import vn.com.bravesoft.androidapp.rx.SingleLiveEvent
-import vn.com.bravesoft.androidapp.utils.LogUtil
 import vn.com.bravesoft.androidapp.api.ApiConsumer as ApiConsumer
 
 abstract class BaseModelView : ViewModel() {
@@ -21,7 +20,7 @@ abstract class BaseModelView : ViewModel() {
 
 
     fun hideLoading() {
-        LogUtil.log("Hide loading")
+        "Hide loading"
         onShowLoading.setValue(false)
     }
 

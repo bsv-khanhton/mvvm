@@ -15,12 +15,11 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import vn.com.bravesoft.androidapp.BuildConfig
 import vn.com.bravesoft.androidapp.api.ApiStores
+import vn.com.bravesoft.androidapp.ext.logi
 import vn.com.bravesoft.androidapp.helper.StoreClient
 import vn.com.bravesoft.androidapp.helper.UserCtrl
 import vn.com.bravesoft.androidapp.utils.Constants
-import vn.com.bravesoft.androidapp.utils.LogUtil
 import java.util.concurrent.TimeUnit
-import javax.inject.Named
 import javax.inject.Singleton
 
 /**
@@ -46,7 +45,7 @@ class AppModule {
                 val accessToken = userCtrl.getAccessToken()
                 if (accessToken.isNotEmpty()){
                     header("Authorization", "Bearer $accessToken")
-                    LogUtil.log(accessToken)
+                    accessToken.logi()
                 }
             }.build()
             chain.proceed(request)

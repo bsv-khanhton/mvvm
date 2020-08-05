@@ -14,7 +14,7 @@ import vn.com.bravesoft.androidapp.ext.getViewModel
 import vn.com.bravesoft.androidapp.helper.FragmentAggregator
 
 import vn.com.bravesoft.androidapp.base.BaseMVVMFragment
-import vn.com.bravesoft.androidapp.helper.UserCtrl
+import vn.com.bravesoft.androidapp.ext.logi
 import vn.com.bravesoft.androidapp.model.UserDTO
 import vn.com.bravesoft.androidapp.modelview.LoginModelView
 import javax.inject.Inject
@@ -50,6 +50,7 @@ class LoginFragment : BaseMVVMFragment<LoginModelView>(R.layout.login_layout) {
         tvTitle.text = "MVVM"
         btnLogin.setOnClickListener {
             viewModel?.login(UserDTO("abc", "12343545"))
+            "Login sucsseed".logi()
         }
     }
 

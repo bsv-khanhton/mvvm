@@ -4,7 +4,7 @@ import android.view.View
 import vn.com.bravesoft.androidapp.R
 import vn.com.bravesoft.androidapp.base.BaseFragment
 import vn.com.bravesoft.androidapp.ext.argument
-import vn.com.bravesoft.androidapp.utils.LogUtil
+import vn.com.bravesoft.androidapp.ext.logi
 
 /**
  * Created by Khanh Ton on 2019-05-28.
@@ -20,6 +20,6 @@ class MainTabHostFragment : BaseFragment(R.layout.main_tab_host_layout) {
     }
 
     protected override fun init(view: View) {
-        LogUtil.log("param1: $param1")
+        "param1: $param1".logi()
     }
 }

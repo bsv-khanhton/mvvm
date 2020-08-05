@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import com.kaopiz.kprogresshud.KProgressHUD
 
 import vn.com.bravesoft.androidapp.MainActivity
-import vn.com.bravesoft.androidapp.utils.LogUtil
+import vn.com.bravesoft.androidapp.ext.logi
 
 abstract class BaseFragment(@LayoutRes private val rootLayout: Int) : Fragment() {
 
@@ -84,12 +84,12 @@ abstract class BaseFragment(@LayoutRes private val rootLayout: Int) : Fragment()
     }
 
     fun loadAPIFail(message: String) {
-        LogUtil.log(message)
+        message.logi()
     }
 
     fun loadAPIError(throwable: Throwable) {
         throwable?.message?.let{
-            LogUtil.log(it)
+            it.logi()
         }
     }
 

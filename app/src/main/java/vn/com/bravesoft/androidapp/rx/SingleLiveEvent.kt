@@ -8,7 +8,7 @@ import androidx.lifecycle.Observer
 import java.util.concurrent.atomic.AtomicBoolean
 
 import io.reactivex.annotations.Nullable
-import vn.com.bravesoft.androidapp.utils.LogUtil
+import vn.com.bravesoft.androidapp.ext.logi
 
 class SingleLiveEvent<T> : MutableLiveData<T>() {
 
@@ -16,7 +16,7 @@ class SingleLiveEvent<T> : MutableLiveData<T>() {
 
     override fun observe(owner: LifecycleOwner, observer: Observer<in T>) {
         if (hasActiveObservers()) {
-            LogUtil.log("Multiple observers registered but only one will be notified of changes.")
+            "Multiple observers registered but only one will be notified of changes.".logi()
         }
 
         // Observe the internal MutableLiveData
