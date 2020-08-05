@@ -32,7 +32,6 @@ Inject
 
 * Save data into SharedPreferences:
 @Inject lateinit var userCtrl: UserCtrl
-<<<<<<< HEAD
 ---------------------------
 Debug Log
 ---------------------------
@@ -41,6 +40,3 @@ Debug Log
 "Text debug".logd()
 
 "Text debug".loge()
-=======
-
->>>>>>> c10ab38e74de3f416127b55172bc9b45f4fc60e8
