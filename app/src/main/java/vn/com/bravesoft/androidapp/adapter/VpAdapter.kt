@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentPagerAdapter
 /**
  * Created by Khanh Ton on 9/15/20.
  */
-class VpAdapter(fm: FragmentManager?) : FragmentPagerAdapter(fm) {
+class VpAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
     private var data: List<Fragment>? = null
 
     fun setData(data: List<Fragment>?){
@@ -18,7 +18,7 @@ class VpAdapter(fm: FragmentManager?) : FragmentPagerAdapter(fm) {
         return data!!.size
     }
 
-    override fun getItem(position: Int): Fragment? {
+    override fun getItem(position: Int): Fragment {
         return data!![position]
     }
 }

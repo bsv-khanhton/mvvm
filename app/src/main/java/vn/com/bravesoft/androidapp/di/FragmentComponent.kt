@@ -20,6 +20,7 @@ interface FragmentComponent {
     fun inject(fragment: ChatFragment)
 
 
+
     @Subcomponent.Builder
     interface Builder {
         fun fragmentModule(fragmentModule: FragmentModule): Builder
