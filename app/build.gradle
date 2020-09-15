@@ -11,7 +11,7 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
-        applicationId "vn.com.bravesoft.androidapp"
+        applicationId "com.bsv.testpush"
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
@@ -33,13 +33,8 @@ android {
 
     productFlavors {
         dev {
-            applicationId "vn.com.bravesoft.androidappdev"
-            manifestPlaceholders = [appname: 'MVVM Dev']
-            buildConfigField "String", "URL_API", '"https://jsonplaceholder.typicode.com"'
-        }
-        prod {
-            applicationId "vn.com.bravesoft.androidapp"
-            manifestPlaceholders = [appname: 'MVVM Prod']
+            applicationId "com.bsv.testpush"
+            manifestPlaceholders = [appname: 'Koibana']
             buildConfigField "String", "URL_API", '"https://jsonplaceholder.typicode.com"'
         }
     }
