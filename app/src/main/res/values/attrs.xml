@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="AttrInputView">
+        <attr name="value_type" format="enum">
+            <enum name="editText" value="0" />
+            <enum name="textView" value="1" />
+        </attr>
+
+        <attr name="input_type" format="enum">
+            <enum name="text" value="0"/>
+            <enum name="number" value="1" />
+            <enum name="phone" value="2" />
+            <enum name="textPassword" value="3" />
+            <enum name="textEmailAddress" value="4"/>
+        </attr>
+
+        <attr name="label" format="string" />
+        <attr name="value" format="string" />
+        <attr name="hint" format="string" />
+        <attr name="backgroundResource" format="integer" />
+    </declare-styleable>
+</resources>
