@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.fragment.app.FragmentManager
 import vn.com.bravesoft.androidapp.base.BaseFragment
 import vn.com.bravesoft.androidapp.ui.LoginFragment
+import vn.com.bravesoft.androidapp.ui.MainTabHostFragment
 import vn.com.bravesoft.androidapp.utils.FragmentUtil
 
 class MainActivity : AppCompatActivity() {
@@ -17,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         mFragmentManager = supportFragmentManager
         mFragmentUtil = FragmentUtil.instance
-        replaceFragment(LoginFragment())
+        replaceFragment(MainTabHostFragment.newInstance("main"))
     }
 
     fun replaceFragment(fragment: BaseFragment) {
@@ -31,8 +32,15 @@ class MainActivity : AppCompatActivity() {
         mFragmentUtil.replaceFragment(mFragmentManager, fragment, R.id.main_activity_container)
     }
 
+    fun replaceSubFragment(fragment: BaseFragment, isClearBacktrack: Boolean) {
+        if (isClearBacktrack) {
+            mFragmentUtil.resetBackstack(mFragmentManager)
+        }
+        mFragmentUtil.replaceFragment(supportFragmentManager, fragment, R.id.subContainer)
+    }
+
     override fun onBackPressed() {
-        if (mFragmentManager.getBackStackEntryCount() === 1) {
+        if (mFragmentManager.backStackEntryCount === 1) {
             finish()
         } else {
             super.onBackPressed()

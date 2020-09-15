@@ -4,21 +4,25 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import vn.com.bravesoft.androidapp.R
-import vn.com.bravesoft.androidapp.base.BaseMVVMFragment
+import androidx.lifecycle.Observer
+import kotlinx.android.synthetic.main.login_layout.*
 import vn.com.bravesoft.androidapp.di.FragmentComponent
+import vn.com.bravesoft.androidapp.R
 import vn.com.bravesoft.androidapp.di.ViewModelFactory
 import vn.com.bravesoft.androidapp.ext.bindComponent
 import vn.com.bravesoft.androidapp.ext.getViewModel
 import vn.com.bravesoft.androidapp.helper.FragmentAggregator
-import vn.com.bravesoft.androidapp.modelview.TimeLineModelView
+
+import vn.com.bravesoft.androidapp.base.BaseMVVMFragment
+import vn.com.bravesoft.androidapp.ext.logi
+import vn.com.bravesoft.androidapp.model.UserDTO
+import vn.com.bravesoft.androidapp.modelview.LoginModelView
 import javax.inject.Inject
 
-class TimelineFragment : BaseMVVMFragment<TimeLineModelView>(R.layout.timeline_layout) {
+class ChatFragment : BaseMVVMFragment<LoginModelView>(R.layout.chat_layout) {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
-
     @Inject
     lateinit var fragmentAggregator: FragmentAggregator
 
@@ -34,7 +38,7 @@ class TimelineFragment : BaseMVVMFragment<TimeLineModelView>(R.layout.timeline_l
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
-    override fun setupObserveModelView(mvvmModelView: TimeLineModelView?) {
+    override fun setupObserveModelView(mvvmModelView: LoginModelView?) {
 
     }
 
@@ -44,11 +48,12 @@ class TimelineFragment : BaseMVVMFragment<TimeLineModelView>(R.layout.timeline_l
     }
 
     companion object {
-        fun newInstance(): TimelineFragment {
+        fun newInstance(): ChatFragment {
             val args = Bundle()
-            val fragment = TimelineFragment()
+            val fragment = ChatFragment()
             fragment.arguments = args
             return fragment
         }
     }
+
 }
