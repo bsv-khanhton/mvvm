@@ -47,7 +47,7 @@ class LoginFragment : BaseMVVMFragment<LoginModelView>(R.layout.login_layout) {
 
 
     override fun init(view: View) {
-        tvTitle.text = "Koibana"
+        tvTitle.text = "MVVM"
         btnLogin.setOnClickListener {
             viewModel?.login(UserDTO("abc", "12343545"))
             "Login sucsseed".logi()
