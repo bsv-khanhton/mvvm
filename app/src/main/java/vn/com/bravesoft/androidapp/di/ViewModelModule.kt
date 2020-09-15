@@ -5,6 +5,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
 import vn.com.bravesoft.androidapp.modelview.LoginModelView
+import vn.com.bravesoft.androidapp.modelview.TimeLineModelView
 
 /**
  * ViewModelを提供するModule
@@ -25,4 +26,8 @@ abstract class ViewModelModule {
     @ViewModelKey(LoginModelView::class)
     abstract fun bindHomeCategoryViewModel(viewModel: LoginModelView): ViewModel
 
+    @Binds
+    @IntoMap
+    @ViewModelKey(TimeLineModelView::class)
+    abstract fun bindTimeLimeViewModel(viewModel: TimeLineModelView): ViewModel
 }
