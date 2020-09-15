@@ -1,10 +1,14 @@
 package vn.com.bravesoft.androidapp.ui
 
 import android.view.View
+import androidx.fragment.app.Fragment
+import kotlinx.android.synthetic.main.main_tab_host_layout.*
 import vn.com.bravesoft.androidapp.R
+import vn.com.bravesoft.androidapp.adapter.VpAdapter
 import vn.com.bravesoft.androidapp.base.BaseFragment
 import vn.com.bravesoft.androidapp.ext.argument
 import vn.com.bravesoft.androidapp.ext.logi
+
 
 /**
  * Created by Khanh Ton on 2019-05-28.
@@ -12,6 +16,8 @@ import vn.com.bravesoft.androidapp.ext.logi
 class MainTabHostFragment : BaseFragment(R.layout.main_tab_host_layout) {
 
     private var param1: String by argument()
+    val fragments:ArrayList<Fragment> = arrayListOf()
+    private var adapter: VpAdapter? = null
 
     companion object {
         fun newInstance(param1: String): MainTabHostFragment  = MainTabHostFragment().apply {
@@ -21,5 +27,17 @@ class MainTabHostFragment : BaseFragment(R.layout.main_tab_host_layout) {
 
     protected override fun init(view: View) {
         "param1: $param1".logi()
+        fragments.add(SearchFragment.newInstance())
+        fragments.add(TimelineFragment.newInstance())
+        fragments.add(ChatFragment.newInstance())
+
+        adapter = VpAdapter(childFragmentManager).apply {
+            setData(fragments)
+        }
+
+        bottomNavigationViewEx.enableAnimation(false)
+
+        viewPagerMainTabHost.adapter = adapter
+        bottomNavigationViewEx.setupWithViewPager(viewPagerMainTabHost)
     }
 }

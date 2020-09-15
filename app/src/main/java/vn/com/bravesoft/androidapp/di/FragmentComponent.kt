@@ -2,7 +2,10 @@ package vn.com.bravesoft.androidapp.di
 
 import dagger.Subcomponent
 import vn.com.bravesoft.androidapp.di.scope.UiScope
+import vn.com.bravesoft.androidapp.ui.ChatFragment
 import vn.com.bravesoft.androidapp.ui.LoginFragment
+import vn.com.bravesoft.androidapp.ui.SearchFragment
+import vn.com.bravesoft.androidapp.ui.TimelineFragment
 
 /**
  * @author ex-cellpromote-ohta
@@ -12,6 +15,9 @@ import vn.com.bravesoft.androidapp.ui.LoginFragment
 interface FragmentComponent {
 
     fun inject(fragment: LoginFragment)
+    fun inject(fragment: TimelineFragment)
+    fun inject(fragment: SearchFragment)
+    fun inject(fragment: ChatFragment)
 
 
     @Subcomponent.Builder

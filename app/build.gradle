@@ -96,4 +96,8 @@ dependencies {
     kapt 'androidx.lifecycle:lifecycle-compiler:2.0.0'
 
     implementation 'com.itkacher.okhttpprofiler:okhttpprofiler:1.0.5'
+
+    implementation 'com.github.ittianyu:BottomNavigationViewEx:2.0.4'
+
+    implementation "com.android.support:design:28.0.0"
 }
