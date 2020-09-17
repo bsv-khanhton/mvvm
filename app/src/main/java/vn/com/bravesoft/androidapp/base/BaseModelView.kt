@@ -6,6 +6,7 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import io.reactivex.subjects.PublishSubject
 import vn.com.bravesoft.androidapp.model.LoginResponse
 import vn.com.bravesoft.androidapp.rx.SingleLiveEvent
 import vn.com.bravesoft.androidapp.api.ApiConsumer as ApiConsumer
@@ -13,6 +14,7 @@ import vn.com.bravesoft.androidapp.api.ApiConsumer as ApiConsumer
 abstract class BaseModelView : ViewModel() {
     private var mCompositeDisposable: CompositeDisposable? = null
 
+    val loadCompletionSubject: PublishSubject<Any> = PublishSubject.create()
     val onShowLoading = SingleLiveEvent<Boolean>()
     val onLoadAPIFail = SingleLiveEvent<String>()
     val onLoadAPIError = SingleLiveEvent<Throwable>()
@@ -49,7 +51,7 @@ abstract class BaseModelView : ViewModel() {
 
     open fun addSubscription(
         observable: Observable<*>?,
-        response: ApiConsumer<LoginResponse>
+        response: ApiConsumer<*>
     ) {
         if (mCompositeDisposable == null) {
             mCompositeDisposable = CompositeDisposable()
@@ -60,13 +62,19 @@ abstract class BaseModelView : ViewModel() {
                 it
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
+                    .doFinally {
+                        loadCompletionSubject.onNext("load finish")
+                    }
                     .subscribe(
                         { success ->
                             response.onLoading(false)
                             response.onSuccess(success)
 
                         },
-                        { throwable -> response.onFailure(throwable as Throwable) })
+                        { throwable ->
+                            loadCompletionSubject.onNext("load error")
+                            response.onFailure(throwable as Throwable)
+                        })
             )
         }
     }
