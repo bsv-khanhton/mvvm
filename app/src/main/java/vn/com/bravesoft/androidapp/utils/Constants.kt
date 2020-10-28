@@ -6,4 +6,6 @@ object Constants {
     // shared preference
     const val PREFERENCE_NAME = BuildConfig.APPLICATION_ID + ".prefs"
 
+    const val RX_CLICK_INTERVEL = 1000L
+
 }

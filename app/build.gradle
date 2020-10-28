@@ -101,4 +101,6 @@ dependencies {
     kapt 'androidx.lifecycle:lifecycle-compiler:2.0.0'
 
     implementation 'com.itkacher.okhttpprofiler:okhttpprofiler:1.0.5'
+
+    implementation  'com.jakewharton.rxbinding2:rxbinding:2.0.0'
 }

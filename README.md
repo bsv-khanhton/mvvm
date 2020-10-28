@@ -40,3 +40,9 @@ Debug Log
 "Text debug".logd()
 
 "Text debug".loge()
+---------------------------
+Extentions reactiveClick to delay click 1s
+---------------------------
+button.reactiveClick {
+                   "Click me!".logi()
+               }

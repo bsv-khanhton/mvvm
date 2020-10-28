@@ -15,6 +15,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import vn.com.bravesoft.androidapp.BuildConfig
 import vn.com.bravesoft.androidapp.api.ApiStores
+import vn.com.bravesoft.androidapp.api.error.RxErrorHandlingCallAdapterFactory
 import vn.com.bravesoft.androidapp.ext.logi
 import vn.com.bravesoft.androidapp.helper.StoreClient
 import vn.com.bravesoft.androidapp.helper.UserCtrl
@@ -105,6 +106,7 @@ class AppModule {
             .baseUrl(BuildConfig.URL_API)
             .client(client.build())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .addCallAdapterFactory(RxErrorHandlingCallAdapterFactory.create())
             .addConverterFactory(gsonConverterFactory)
             .build()
     }
