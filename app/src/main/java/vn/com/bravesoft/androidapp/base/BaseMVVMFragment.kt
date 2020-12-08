@@ -27,7 +27,7 @@ abstract class BaseMVVMFragment<M : BaseModelView>(rootLayout: Int) :
     protected abstract fun setupObserveModelView(mvvmModelView: M?)
 
     private fun setupObserveModelViewBase() {
-        viewModel?.onLoadAPIFail?.observe(this, Observer { msg -> loadAPIFail(msg)  })
+        viewModel?.onLoadAPIFail?.observe(this, Observer { msg -> loadAPIFail(msg) })
 
         viewModel?.onLoadAPIError?.observe(this, Observer { throwable -> loadAPIError(throwable) })
 
