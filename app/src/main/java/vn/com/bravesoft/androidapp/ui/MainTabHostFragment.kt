@@ -14,7 +14,7 @@ class MainTabHostFragment : BaseFragment(R.layout.main_tab_host_layout) {
     private var param1: String by argument()
 
     companion object {
-        fun newInstance(param1: String): MainTabHostFragment  = MainTabHostFragment().apply {
+        fun newInstance(param1: String): MainTabHostFragment = MainTabHostFragment().apply {
             this.param1 = param1
         }
     }

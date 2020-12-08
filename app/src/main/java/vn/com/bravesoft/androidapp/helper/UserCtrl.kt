@@ -36,8 +36,7 @@ class UserCtrl @Inject constructor(private val storeClient: StoreClient) {
             UserDTO()
     }
 
-
-    fun isUserLogged() :Boolean{
+    fun isUserLogged(): Boolean {
         return getAccessToken().isNotEmpty()
     }
 
@@ -50,9 +49,9 @@ class UserCtrl @Inject constructor(private val storeClient: StoreClient) {
         return accessToken
     }
 
-    //Reset UserCtrl
-    //Remove local data
-    //Clear all notification
+    // Reset UserCtrl
+    // Remove local data
+    // Clear all notification
     fun userLogout() {
         this.userEntity = null
         storeClient.remove(USER_INFO)

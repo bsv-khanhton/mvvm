@@ -15,9 +15,11 @@ class FragmentModule(private val fragment: Fragment) {
 
     @UiScope
     @Provides
-    fun provideActivity(): Activity = fragment.activity ?: throw NullPointerException("""
+    fun provideActivity(): Activity = fragment.activity ?: throw NullPointerException(
+        """
             Activity is Null. Please do the injection after the attach() of the fragment is called
-            """)
+            """
+    )
     @UiScope
     @Provides
     fun provideMainActivity(): MainActivity = fragment.activity as MainActivity

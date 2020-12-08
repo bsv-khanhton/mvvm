@@ -1,14 +1,12 @@
 package vn.com.bravesoft.androidapp.rx
 
-
 import androidx.annotation.MainThread
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import java.util.concurrent.atomic.AtomicBoolean
-
 import io.reactivex.annotations.Nullable
 import vn.com.bravesoft.androidapp.ext.logi
+import java.util.concurrent.atomic.AtomicBoolean
 
 class SingleLiveEvent<T> : MutableLiveData<T>() {
 
@@ -20,12 +18,14 @@ class SingleLiveEvent<T> : MutableLiveData<T>() {
         }
 
         // Observe the internal MutableLiveData
-        super.observe(owner, Observer<T> { t ->
-            if (mPending.compareAndSet(true, false)) {
-                observer.onChanged(t)
+        super.observe(
+            owner,
+            Observer<T> { t ->
+                if (mPending.compareAndSet(true, false)) {
+                    observer.onChanged(t)
+                }
             }
-        })
-
+        )
     }
 
     @MainThread

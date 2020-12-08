@@ -1,13 +1,11 @@
 package vn.com.bravesoft.androidapp.base
 
 import androidx.lifecycle.ViewModel
-
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
-import vn.com.bravesoft.androidapp.model.LoginResponse
 import vn.com.bravesoft.androidapp.rx.SingleLiveEvent
 import vn.com.bravesoft.androidapp.api.ApiConsumer as ApiConsumer
 
@@ -19,7 +17,6 @@ abstract class BaseModelView : ViewModel() {
     val onLoadAPIFail = SingleLiveEvent<String>()
     val onLoadAPIError = SingleLiveEvent<Throwable>()
     val onSentMessage = SingleLiveEvent<Int>()
-
 
     fun hideLoading() {
         "Hide loading"
@@ -38,7 +35,7 @@ abstract class BaseModelView : ViewModel() {
         onUnsubscribe()
     }
 
-    //RXjava
+    // RXjava
     fun onUnsubscribe() {
         if (mCompositeDisposable != null && mCompositeDisposable?.size() ?: 0 > 0) {
             mCompositeDisposable?.clear()
@@ -69,12 +66,12 @@ abstract class BaseModelView : ViewModel() {
                         { success ->
                             response.onLoading(false)
                             response.onSuccess(success)
-
                         },
                         { throwable ->
                             loadCompletionSubject.onNext("load error")
                             response.onFailure(throwable as Throwable)
-                        })
+                        }
+                    )
             )
         }
     }

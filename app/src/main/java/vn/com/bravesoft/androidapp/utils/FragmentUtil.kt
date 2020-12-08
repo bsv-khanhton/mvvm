@@ -19,7 +19,7 @@ class FragmentUtil {
         transaction
             .replace(viewContainer, fragment, FRAGMENT_TAG)
             .addToBackStack(FRAGMENT_TAG)
-            //.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
+            // .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
             .commitAllowingStateLoss()
     }
 
@@ -34,10 +34,9 @@ class FragmentUtil {
         transaction
             .replace(viewContainer, fragment, FRAGMENT_TAG)
             .addToBackStack(FRAGMENT_TAG)
-            //.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
+            // .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
             .commitAllowingStateLoss()
     }
-
 
     fun addFragment(
         fragmentManager: FragmentManager,
@@ -81,7 +80,6 @@ class FragmentUtil {
             .replace(viewContainer, childFragment, FRAGMENT_TAG)
             .commit()
     }
-
 
     fun addChildFragment(parentFragment: Fragment, childFragment: Fragment, viewContainer: Int) {
 
@@ -130,7 +128,6 @@ class FragmentUtil {
             } catch (ex: IllegalStateException) {
                 ex.message
             }
-
         }
     }
 

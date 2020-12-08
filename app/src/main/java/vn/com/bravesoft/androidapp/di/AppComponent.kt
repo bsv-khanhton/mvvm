@@ -25,5 +25,4 @@ interface AppComponent {
 
         fun build(): AppComponent
     }
-
 }

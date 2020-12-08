@@ -23,7 +23,8 @@ class FragmentArgumentDelegate<T : Any> :
 
     override fun setValue(
         thisRef: Fragment,
-        property: KProperty<*>, value: T
+        property: KProperty<*>,
+        value: T
     ) {
         val args = thisRef.arguments
             ?: Bundle().also(thisRef::setArguments)

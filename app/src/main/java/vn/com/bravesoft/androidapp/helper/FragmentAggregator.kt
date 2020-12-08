@@ -21,5 +21,4 @@ class FragmentAggregator @Inject constructor(private val activity: MainActivity)
     fun openMainTabHost(username: String) {
         activity?.replaceFragment(MainTabHostFragment.newInstance(username), isClearBacktrack = true)
     }
-
 }

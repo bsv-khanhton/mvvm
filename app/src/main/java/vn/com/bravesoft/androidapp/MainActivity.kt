@@ -1,7 +1,7 @@
 package vn.com.bravesoft.androidapp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import vn.com.bravesoft.androidapp.base.BaseFragment
 import vn.com.bravesoft.androidapp.ui.LoginFragment
@@ -10,7 +10,7 @@ import vn.com.bravesoft.androidapp.utils.FragmentUtil
 class MainActivity : AppCompatActivity() {
 
     lateinit var mFragmentManager: FragmentManager
-    lateinit var  mFragmentUtil: FragmentUtil
+    lateinit var mFragmentUtil: FragmentUtil
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

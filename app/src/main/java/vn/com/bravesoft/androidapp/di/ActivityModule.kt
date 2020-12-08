@@ -18,5 +18,4 @@ class ActivityModule(private val activity: Activity) {
     /*@Provides
     @UiScope
     fun provideEventTracker(activity: Activity): EventTracker = EventTracker(firebaseAnalytics, activity)*/
-
 }

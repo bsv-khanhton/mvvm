@@ -10,10 +10,13 @@ import java.util.concurrent.TimeUnit
  * Created by Khanh Ton on 10/27/20.
  */
 
-fun View.reactiveClick(block : () -> Unit) : Disposable {
+fun View.reactiveClick(block: () -> Unit): Disposable {
     return RxView.clicks(this)
         .throttleFirst(Constants.RX_CLICK_INTERVEL, TimeUnit.MILLISECONDS)
-        .subscribe({
-            block()
-        }, {})
+        .subscribe(
+            {
+                block()
+            },
+            {}
+        )
 }

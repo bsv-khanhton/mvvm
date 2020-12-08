@@ -12,8 +12,10 @@ import javax.inject.Singleton
  * @author ex-cellpromote-ohta
  */
 @Singleton
-class ViewModelFactory @Inject constructor(private val creators: Map<Class<out ViewModel>,
-    @JvmSuppressWildcards Provider<ViewModel>>) : ViewModelProvider.Factory {
+class ViewModelFactory @Inject constructor(
+    private val creators: Map<Class<out ViewModel>,
+        @JvmSuppressWildcards Provider<ViewModel>>
+) : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalArgumentException::class, RuntimeException::class)

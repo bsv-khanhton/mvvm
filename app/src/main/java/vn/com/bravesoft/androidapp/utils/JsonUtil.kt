@@ -37,7 +37,7 @@ object JsonUtil {
      * @param json the json
      * @param cls  the cls
      * @return Object filled with JSON string data
-    </T> */
+     </T> */
     fun <T> fromJson(json: String, cls: Class<T>?): T {
         val gson = buildGson()
 
@@ -50,7 +50,6 @@ object JsonUtil {
             jsonArray.add(element)
 
             val listType = object : TypeToken<T>() {
-
             }.type
             return gson.fromJson(jsonArray, listType)
         }
@@ -66,7 +65,7 @@ object JsonUtil {
      * @param json the json
      * @param cls  the cls
      * @return t
-    </T> */
+     </T> */
     fun <T> fromJsonExcludeFields(json: String, cls: Class<T>): T {
         val gson = GsonBuilder().excludeFieldsWithoutExposeAnnotation().create()
 
@@ -79,7 +78,6 @@ object JsonUtil {
             jsonArray.add(element)
 
             val listType = object : TypeToken<T>() {
-
             }.type
             return gson.fromJson(jsonArray, listType)
         }
@@ -118,11 +116,10 @@ object JsonUtil {
      * @param json the json
      * @param cls  the cls
      * @return the t
-    </T> */
+     </T> */
     fun <T> fromJsonToArray(json: String, cls: Class<T>): T? {
         val gson = Gson()
         val listType = object : TypeToken<List<T>>() {
-
         }.type
         return gson.fromJson<T>(json, listType)
     }
@@ -134,10 +131,9 @@ object JsonUtil {
      * @param s     the s
      * @param clazz the clazz
      * @return the list
-    </T> */
+     </T> */
     fun <T> stringToArray(s: String, clazz: Class<Array<T>>): List<T> {
         val arr = Gson().fromJson(s, clazz)
-        return listOf(*arr) //or return Arrays.asList(new Gson().fromJson(s, clazz)); for a one-liner
+        return listOf(*arr) // or return Arrays.asList(new Gson().fromJson(s, clazz)); for a one-liner
     }
-
 }

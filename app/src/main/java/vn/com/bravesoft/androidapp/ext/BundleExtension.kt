@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.os.Parcelable
 import java.io.Serializable
 
-
 fun <T> Bundle.put(key: String, value: T) {
     when (value) {
         is Boolean -> putBoolean(key, value)

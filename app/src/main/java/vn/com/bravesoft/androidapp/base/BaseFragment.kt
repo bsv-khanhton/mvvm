@@ -4,12 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
-
 import com.kaopiz.kprogresshud.KProgressHUD
-
 import vn.com.bravesoft.androidapp.MainActivity
 import vn.com.bravesoft.androidapp.ext.logi
 
@@ -17,7 +14,6 @@ abstract class BaseFragment(@LayoutRes private val rootLayout: Int) : Fragment()
 
     protected var mMainActivity: MainActivity? = null
     private var kProgressHUD: KProgressHUD? = null
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,7 +72,6 @@ abstract class BaseFragment(@LayoutRes private val rootLayout: Int) : Fragment()
                 .setCancellable(true)
                 .setAnimationSpeed(2)
                 .setDimAmount(0.5f)
-
         }
         if (kProgressHUD?.isShowing == false && isAdded) {
             kProgressHUD?.show()
@@ -88,9 +83,8 @@ abstract class BaseFragment(@LayoutRes private val rootLayout: Int) : Fragment()
     }
 
     fun loadAPIError(throwable: Throwable) {
-        throwable?.message?.let{
+        throwable?.message?.let {
             it.logi()
         }
     }
-
 }

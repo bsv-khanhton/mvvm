@@ -17,5 +17,4 @@ open interface ApiConsumer<M : BaseResponse> {
     fun onFailure(throwable: Throwable)
 
     fun onLoading(isLoading: Boolean)
-
 }

@@ -24,6 +24,10 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -100,7 +104,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
     kapt 'androidx.lifecycle:lifecycle-compiler:2.0.0'
 
-    implementation 'com.itkacher.okhttpprofiler:okhttpprofiler:1.0.5'
+    implementation 'com.itkacher.okhttpprofiler:okhttpprofiler:1.0.7'
 
     implementation  'com.jakewharton.rxbinding2:rxbinding:2.0.0'
 }

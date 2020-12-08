@@ -45,7 +45,7 @@ class StoreClient @Inject constructor(private val sharedPreferences: SharedPrefe
 
                 val encrypedPwdBytes = Base64.decode(encryptStr, Base64.DEFAULT)
 
-                val cipher = Cipher.getInstance(ALGORITHM)// cipher is not thread safe
+                val cipher = Cipher.getInstance(ALGORITHM) // cipher is not thread safe
                 cipher.init(Cipher.DECRYPT_MODE, key)
                 String(cipher.doFinal(encrypedPwdBytes))
             } catch (e: Exception) {
@@ -126,7 +126,7 @@ class StoreClient @Inject constructor(private val sharedPreferences: SharedPrefe
     }
 
     fun saveInt(key: String, number: Int) {
-        sharedPreferences.edit().putInt(key,  number).apply()
+        sharedPreferences.edit().putInt(key, number).apply()
     }
 
     fun getInt(key: String, defaultValue: Int): Int {

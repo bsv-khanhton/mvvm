@@ -13,11 +13,9 @@ interface FragmentComponent {
 
     fun inject(fragment: LoginFragment)
 
-
     @Subcomponent.Builder
     interface Builder {
         fun fragmentModule(fragmentModule: FragmentModule): Builder
         fun build(): FragmentComponent
     }
-
 }

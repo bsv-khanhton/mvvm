@@ -35,16 +35,15 @@ class AppModule {
     @Provides
     fun provideCompositeDisposable(): CompositeDisposable = CompositeDisposable()
 
-
     @Provides
     fun provideApplicationInterceptor(userCtrl: UserCtrl): Interceptor {
         return Interceptor { chain ->
-            val url = chain.request().url().newBuilder()
+            val url = chain.request().url.newBuilder()
                 .build()
 
             val request = chain.request().newBuilder().url(url).apply {
                 val accessToken = userCtrl.getAccessToken()
-                if (accessToken.isNotEmpty()){
+                if (accessToken.isNotEmpty()) {
                     header("Authorization", "Bearer $accessToken")
                     accessToken.logi()
                 }
@@ -86,9 +85,11 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(applicationInterceptor: Interceptor,
-                        loggingInterceptor: HttpLoggingInterceptor,
-                        gsonConverterFactory: GsonConverterFactory): Retrofit {
+    fun provideRetrofit(
+        applicationInterceptor: Interceptor,
+        loggingInterceptor: HttpLoggingInterceptor,
+        gsonConverterFactory: GsonConverterFactory
+    ): Retrofit {
         // Timeout時間を20秒に変更
         val client = OkHttpClient.Builder()
             .readTimeout(20, TimeUnit.SECONDS)
@@ -97,8 +98,7 @@ class AppModule {
             .addInterceptor(loggingInterceptor)
             .addInterceptor(applicationInterceptor)
 
-
-        if(BuildConfig.DEBUG){
+        if (BuildConfig.DEBUG) {
             client.addInterceptor(OkHttpProfilerInterceptor())
         }
 
@@ -111,9 +111,7 @@ class AppModule {
             .build()
     }
 
-
     @Provides
     @Singleton
     fun provideApiService(retrofit: Retrofit): ApiStores = retrofit.create(ApiStores::class.java)
-
 }
