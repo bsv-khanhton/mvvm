@@ -159,11 +159,11 @@ class FragmentUtil {
     }
 
     private fun getCurrentFragment(fragmentManager: FragmentManager?): Fragment? {
-        if (fragmentManager != null && fragmentManager?.backStackEntryCount > 0) {
+        if (fragmentManager != null && fragmentManager.backStackEntryCount > 0) {
             val FRAGMENT_TAG =
-                fragmentManager?.getBackStackEntryAt(fragmentManager?.backStackEntryCount - 1)
+                fragmentManager.getBackStackEntryAt(fragmentManager.backStackEntryCount - 1)
                     .name
-            return fragmentManager?.findFragmentByTag(FRAGMENT_TAG)
+            return fragmentManager.findFragmentByTag(FRAGMENT_TAG)
         }
         return null
     }

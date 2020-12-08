@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if (mFragmentManager.getBackStackEntryCount() === 1) {
+        if (mFragmentManager.backStackEntryCount == 1) {
             finish()
         } else {
             super.onBackPressed()

@@ -83,7 +83,7 @@ abstract class BaseFragment(@LayoutRes private val rootLayout: Int) : Fragment()
     }
 
     fun loadAPIError(throwable: Throwable) {
-        throwable?.message?.let {
+        throwable.message?.let {
             it.logi()
         }
     }

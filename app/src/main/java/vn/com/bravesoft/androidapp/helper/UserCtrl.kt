@@ -1,7 +1,7 @@
 package vn.com.bravesoft.androidapp.helper
 
+import com.google.gson.Gson
 import vn.com.bravesoft.androidapp.model.UserDTO
-import vn.com.bravesoft.androidapp.utils.JsonUtil
 import javax.inject.Inject
 
 /**
@@ -18,7 +18,7 @@ class UserCtrl @Inject constructor(private val storeClient: StoreClient) {
 
     fun saveUser(userEntity: UserDTO?) {
         userEntity ?: return
-        storeClient.saveString(USER_INFO, JsonUtil.toJson(userEntity))
+        storeClient.saveString(USER_INFO, Gson().toJson(userEntity))
         this.userEntity = userEntity
     }
 
@@ -31,7 +31,7 @@ class UserCtrl @Inject constructor(private val storeClient: StoreClient) {
     fun getUserStore(key: String, defaultValue: String): UserDTO {
         val jsonUser = storeClient.getString(key, defaultValue)
         return if (!jsonUser.isNullOrEmpty())
-            JsonUtil.fromJson(jsonUser, UserDTO::class.java)
+            Gson().fromJson(jsonUser, UserDTO::class.java)
         else
             UserDTO()
     }

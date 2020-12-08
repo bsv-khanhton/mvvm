@@ -19,7 +19,6 @@ abstract class BaseModelView : ViewModel() {
     val onSentMessage = SingleLiveEvent<Int>()
 
     fun hideLoading() {
-        "Hide loading"
         onShowLoading.setValue(false)
     }
 
