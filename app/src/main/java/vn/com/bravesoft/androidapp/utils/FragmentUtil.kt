@@ -115,22 +115,6 @@ class FragmentUtil {
             .commit()
     }
 
-    fun onBackPressJumpToFragmentWithName(fragmentManager: FragmentManager, fragmentName: String) {
-        while (fragmentManager.getBackStackEntryCount() > 1) {
-            if (fragmentManager.getBackStackEntryAt(
-                    fragmentManager.getBackStackEntryCount() - 1
-                ).getName().equals(fragmentName)
-            ) {
-                return
-            }
-            try {
-                fragmentManager.popBackStackImmediate()
-            } catch (ex: IllegalStateException) {
-                ex.message
-            }
-        }
-    }
-
     fun getFragmentBackStack(fragmentManager: FragmentManager, index: Int): Fragment? {
         val FRAGMENT_TAG = fragmentManager.getBackStackEntryAt(index).getName()
         return fragmentManager.findFragmentByTag(FRAGMENT_TAG)

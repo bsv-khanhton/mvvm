@@ -1,0 +1,119 @@
+{
+  "project_info": {
+    "project_number": "373028143595",
+    "firebase_url": "https://relotest-79a37.firebaseio.com",
+    "project_id": "relotest-79a37",
+    "storage_bucket": "relotest-79a37.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:373028143595:android:696aaa8862fc5e654319ae",
+        "android_client_info": {
+          "package_name": "com.bsv.testpush"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "373028143595-strb0hirkeodr7bmrnpur1q6c069utui.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYuj9sRJPIUo7uhW2AjoW_wlxBCGnXcGE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "373028143595-strb0hirkeodr7bmrnpur1q6c069utui.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "373028143595-6d55q5tfe3edhv8vuorp1hbtjj9j6b9o.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "jp.relo.cluboff"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:373028143595:android:a1be2d9daf0780d4",
+        "android_client_info": {
+          "package_name": "jp.relo.cluboff"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "373028143595-strb0hirkeodr7bmrnpur1q6c069utui.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYuj9sRJPIUo7uhW2AjoW_wlxBCGnXcGE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "373028143595-strb0hirkeodr7bmrnpur1q6c069utui.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "373028143595-6d55q5tfe3edhv8vuorp1hbtjj9j6b9o.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "jp.relo.cluboff"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:373028143595:android:2ba1100b5cbbd8e2",
+        "android_client_info": {
+          "package_name": "jp.relo.cluboff.test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "373028143595-strb0hirkeodr7bmrnpur1q6c069utui.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYuj9sRJPIUo7uhW2AjoW_wlxBCGnXcGE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "373028143595-strb0hirkeodr7bmrnpur1q6c069utui.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "373028143595-6d55q5tfe3edhv8vuorp1hbtjj9j6b9o.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "jp.relo.cluboff"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
