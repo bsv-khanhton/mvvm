@@ -13,6 +13,14 @@ Android Studio Version | Android API Version Min
 
 ###
 ---------------------------
+Check style code KTLint
+---------------------------
+- Check code: ./gradlew ktlint
+- Report check code: ./gradlew ktlintReport
+- Auto format code: ./gradlew ktlintFormat
+
+###
+---------------------------
 Sent data to other fragment
 ---------------------------
     private var param1: Int by argument()
