@@ -24,20 +24,21 @@ abstract class BaseMVVMFragment<M : BaseModelView>(rootLayout: Int) :
         super.onDestroyView()
     }
 
-    protected abstract fun setupObserveModelView(mvvmModelView: M?)
+    protected abstract fun setupObserveModelView(viewModel: M?)
 
     private fun setupObserveModelViewBase() {
-        viewModel?.onLoadAPIFail?.observe(this, Observer { msg -> loadAPIFail(msg) })
+        viewModel?.onLoadAPIFail?.observe(viewLifecycleOwner, Observer { msg -> loadAPIFail(msg) })
 
-        viewModel?.onLoadAPIError?.observe(this, Observer { throwable -> loadAPIError(throwable) })
+        viewModel?.onLoadAPIError?.observe(viewLifecycleOwner, Observer { throwable -> loadAPIError(throwable) })
 
         viewModel?.onShowLoading?.observe(
-            this,
+            viewLifecycleOwner,
             Observer { isShow ->
                 if (isShow == true) {
                     showLoading()
-                } else
+                } else {
                     hideLoading()
+                }
             }
         )
     }

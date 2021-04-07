@@ -4,10 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.viewbinding.library.fragment.viewBinding
 import androidx.lifecycle.Observer
-import kotlinx.android.synthetic.main.login_layout.*
 import vn.com.bravesoft.androidapp.R
 import vn.com.bravesoft.androidapp.base.BaseMVVMFragment
+import vn.com.bravesoft.androidapp.databinding.LoginLayoutBinding
 import vn.com.bravesoft.androidapp.di.FragmentComponent
 import vn.com.bravesoft.androidapp.di.ViewModelFactory
 import vn.com.bravesoft.androidapp.ext.bindComponent
@@ -26,6 +27,8 @@ class LoginFragment : BaseMVVMFragment<LoginModelView>(R.layout.login_layout) {
     @Inject
     lateinit var fragmentAggregator: FragmentAggregator
 
+    private val binding: LoginLayoutBinding by viewBinding()
+
     private val component: FragmentComponent by bindComponent()
 
     override fun onCreateView(
@@ -38,8 +41,8 @@ class LoginFragment : BaseMVVMFragment<LoginModelView>(R.layout.login_layout) {
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
-    override fun setupObserveModelView(mvvmModelView: LoginModelView?) {
-        mvvmModelView?.onLoginSuccessed?.observe(
+    override fun setupObserveModelView(viewModel: LoginModelView?) {
+        viewModel?.onLoginSuccessed?.observe(
             this,
             Observer { s ->
                 fragmentAggregator.openMainTabHost(s)
@@ -48,8 +51,8 @@ class LoginFragment : BaseMVVMFragment<LoginModelView>(R.layout.login_layout) {
     }
 
     override fun init(view: View) {
-        tvTitle.text = "MVVM"
-        btnLogin.reactiveClick {
+        binding.tvTitle.text = "MVVM"
+        binding.btnLogin.reactiveClick {
             viewModel?.login(UserDTO("abc", "12343545"))
             "Login sucsseed".logi()
         }

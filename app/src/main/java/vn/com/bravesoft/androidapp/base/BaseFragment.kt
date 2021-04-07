@@ -31,12 +31,9 @@ abstract class BaseFragment(@LayoutRes private val rootLayout: Int) : Fragment()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         init(view)
-        setupActionBar()
     }
 
     protected abstract fun init(view: View)
-
-    fun setupActionBar() {}
 
     override fun onStart() {
         super.onStart()
@@ -60,7 +57,7 @@ abstract class BaseFragment(@LayoutRes private val rootLayout: Int) : Fragment()
     }
 
     fun hideLoading() {
-        if (kProgressHUD != null && kProgressHUD?.isShowing == true && isAdded) {
+        if (kProgressHUD?.isShowing == true && isAdded) {
             kProgressHUD?.dismiss()
         }
     }
