@@ -7,7 +7,7 @@ import javax.inject.Inject
 /**
  * Created by AnhVo on 2019-11-18
  */
-class UserCtrl @Inject constructor(private val storeClient: StoreClient) {
+class LocalDataCtrl @Inject constructor(private val storeClient: StoreClient) {
 
     private var userEntity: UserDTO? = null
 
@@ -28,7 +28,7 @@ class UserCtrl @Inject constructor(private val storeClient: StoreClient) {
         return userEntity ?: UserDTO()
     }
 
-    fun getUserStore(key: String, defaultValue: String): UserDTO {
+    private fun getUserStore(key: String, defaultValue: String): UserDTO {
         val jsonUser = storeClient.getString(key, defaultValue)
         return if (!jsonUser.isNullOrEmpty())
             Gson().fromJson(jsonUser, UserDTO::class.java)

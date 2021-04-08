@@ -17,8 +17,8 @@ import vn.com.bravesoft.androidapp.BuildConfig
 import vn.com.bravesoft.androidapp.api.ApiStores
 import vn.com.bravesoft.androidapp.api.error.RxErrorHandlingCallAdapterFactory
 import vn.com.bravesoft.androidapp.ext.logi
+import vn.com.bravesoft.androidapp.helper.LocalDataCtrl
 import vn.com.bravesoft.androidapp.helper.StoreClient
-import vn.com.bravesoft.androidapp.helper.UserCtrl
 import vn.com.bravesoft.androidapp.utils.Constants
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
@@ -36,13 +36,13 @@ class AppModule {
     fun provideCompositeDisposable(): CompositeDisposable = CompositeDisposable()
 
     @Provides
-    fun provideApplicationInterceptor(userCtrl: UserCtrl): Interceptor {
+    fun provideApplicationInterceptor(localDataCtrl: LocalDataCtrl): Interceptor {
         return Interceptor { chain ->
             val url = chain.request().url.newBuilder()
                 .build()
 
             val request = chain.request().newBuilder().url(url).apply {
-                val accessToken = userCtrl.getAccessToken()
+                val accessToken = localDataCtrl.getAccessToken()
                 if (accessToken.isNotEmpty()) {
                     header("Authorization", "Bearer $accessToken")
                     accessToken.logi()
@@ -81,7 +81,7 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideUserCtrl(storeClient: StoreClient): UserCtrl = UserCtrl(storeClient)
+    fun provideUserCtrl(storeClient: StoreClient): LocalDataCtrl = LocalDataCtrl(storeClient)
 
     @Provides
     @Singleton

@@ -41,35 +41,13 @@ class MainAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder?>() {
         return mData?.size ?: 0
     }
 
-    fun onMove(fromPosition: Int, toPosition: Int) {
-        if (fromPosition < toPosition) {
-            for (i in fromPosition until toPosition) {
-                Collections.swap(mData, i, i + 1)
-            }
-        } else {
-            for (i in fromPosition downTo toPosition + 1) {
-                Collections.swap(mData, i, i - 1)
-            }
-        }
-        notifyItemMoved(fromPosition, toPosition)
-    }
-
-    fun swipe(position: Int, direction: Int) {
-        mData!!.removeAt(position)
-        notifyItemRemoved(position)
-    }
-
     open class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val mTextTitle: TextView
+        private val mTextTitle: TextView = itemView.findViewById(R.id.text_title)
         fun bindData(data: String?) {
             if (data == null) {
                 return
             }
             mTextTitle.text = data
-        }
-
-        init {
-            mTextTitle = itemView.findViewById(R.id.text_title)
         }
     }
 

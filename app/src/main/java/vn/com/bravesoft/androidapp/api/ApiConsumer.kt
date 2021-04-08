@@ -9,7 +9,7 @@ import vn.com.bravesoft.androidapp.model.BaseResponse
 interface ApiConsumer<M : BaseResponse> {
 
     fun onSuccess(o: Any) {
-        onSuccess(o)
+        onSuccess(o as M)
     }
 
     fun onSuccess(response: M)

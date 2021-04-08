@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         replaceFragment(LoginFragment())
     }
 
-    fun replaceFragment(fragment: BaseFragment) {
+    private fun replaceFragment(fragment: BaseFragment) {
         replaceFragment(fragment, false)
     }
 

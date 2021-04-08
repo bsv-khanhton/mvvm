@@ -18,7 +18,7 @@ class OpenSourceLicensesDialog : DialogFragment() {
         return AlertDialog.Builder(requireActivity())
             .setTitle("Open Source Licenses")
             .setView(webView)
-            .setPositiveButton(R.string.ok, { dialog, which -> dialog.dismiss() })
+            .setPositiveButton(R.string.ok) { dialog, _ -> dialog.dismiss() }
             .create()
     }
 }

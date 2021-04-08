@@ -74,7 +74,7 @@ class FragmentUtil {
         val FRAGMENT_TAG = childFragment.javaClass.simpleName
 
         parentFragment
-            .getChildFragmentManager().beginTransaction()
+            .childFragmentManager.beginTransaction()
             .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
             .addToBackStack(FRAGMENT_TAG)
             .replace(viewContainer, childFragment, FRAGMENT_TAG)
@@ -86,7 +86,7 @@ class FragmentUtil {
         val FRAGMENT_TAG = childFragment.javaClass.simpleName
 
         parentFragment
-            .getChildFragmentManager().beginTransaction()
+            .childFragmentManager.beginTransaction()
             .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
             .addToBackStack(FRAGMENT_TAG)
             .add(viewContainer, childFragment, FRAGMENT_TAG)
@@ -109,14 +109,14 @@ class FragmentUtil {
         val FRAGMENT_TAG = childFragment.javaClass.simpleName
 
         parentFragment
-            .getChildFragmentManager().beginTransaction()
+            .childFragmentManager.beginTransaction()
             .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
             .replace(viewContainer, childFragment, FRAGMENT_TAG)
             .commit()
     }
 
     fun getFragmentBackStack(fragmentManager: FragmentManager, index: Int): Fragment? {
-        val FRAGMENT_TAG = fragmentManager.getBackStackEntryAt(index).getName()
+        val FRAGMENT_TAG = fragmentManager.getBackStackEntryAt(index).name
         return fragmentManager.findFragmentByTag(FRAGMENT_TAG)
     }
 
@@ -130,13 +130,13 @@ class FragmentUtil {
     }
 
     fun resetBackstack(fragmentManager: FragmentManager) {
-        while (fragmentManager.getBackStackEntryCount() > 0) {
+        while (fragmentManager.backStackEntryCount > 0) {
             fragmentManager.popBackStackImmediate()
         }
     }
 
     fun backStackToMain(fragmentManager: FragmentManager) {
-        for (i in 0 until fragmentManager.getBackStackEntryCount() - 1) {
+        for (i in 0 until fragmentManager.backStackEntryCount - 1) {
             fragmentManager.popBackStack()
         }
         fragmentManager.beginTransaction().commitAllowingStateLoss()

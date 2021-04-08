@@ -2,7 +2,7 @@ package vn.com.bravesoft.androidapp.ext
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import vn.com.bravesoft.androidapp.MyApplication
 import vn.com.bravesoft.androidapp.delegate.FragmentArgumentDelegate
 import vn.com.bravesoft.androidapp.delegate.FragmentNullableArgumentDelegate
@@ -50,5 +50,5 @@ fun <T : Any> Fragment.argumentNullable(): ReadWriteProperty<Fragment, T?> =
  * @return ViewModel
  */
 inline fun <reified T : ViewModel> Fragment.getViewModel(viewModelFactory: ViewModelFactory): T {
-    return ViewModelProviders.of(this, viewModelFactory).get(T::class.java)
+    return ViewModelProvider(this, viewModelFactory).get(T::class.java)
 }
