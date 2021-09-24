@@ -2,6 +2,7 @@ package vn.com.bravesoft.androidapp.utils
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import vn.com.bravesoft.androidapp.R
 
 class FragmentUtil {
 
@@ -17,9 +18,13 @@ class FragmentUtil {
 
         val transaction = fragmentManager.beginTransaction()
         transaction
-            .replace(viewContainer, fragment, FRAGMENT_TAG)
             .addToBackStack(FRAGMENT_TAG)
-            // .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
+            .setCustomAnimations(
+                R.anim.enter_from_right,
+                R.anim.fade_out,
+                R.anim.fade_in,
+                R.anim.exit_to_right)
+            .replace(viewContainer, fragment, FRAGMENT_TAG)
             .commitAllowingStateLoss()
     }
 
