@@ -23,7 +23,8 @@ class FragmentUtil {
                 R.anim.enter_from_right,
                 R.anim.fade_out,
                 R.anim.fade_in,
-                R.anim.exit_to_right)
+                R.anim.exit_to_right
+            )
             .replace(viewContainer, fragment, FRAGMENT_TAG)
             .commitAllowingStateLoss()
     }
