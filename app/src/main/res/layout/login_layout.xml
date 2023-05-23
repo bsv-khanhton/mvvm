@@ -17,7 +17,7 @@
         android:id="@+id/edUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="User name" />
+        android:hint="User name " />
 
     <EditText
         android:id="@+id/edPasswd"
@@ -30,5 +30,5 @@
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login" />
+        android:text="-Login-" />
 </LinearLayout>
