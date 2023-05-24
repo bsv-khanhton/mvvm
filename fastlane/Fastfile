@@ -43,5 +43,11 @@ platform :android do
     linkOTA = jsonResponse["url"]
 
     puts "echo linkOTA: " + linkOTA
+    chatwork(
+      message: "Build app: " + linkOTA,
+      roomid: 128513095,
+      success: true,
+      api_token: "41990099bdf2b651ab4f1d166bf5f132"
+    )
   end
 end
