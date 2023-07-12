@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         mFragmentManager = supportFragmentManager
         mFragmentUtil = FragmentUtil.instance
         replaceFragment(LoginFragment())
-        "test fastlane".logi()
+        "test fastlane2".logi()
     }
 
     private fun replaceFragment(fragment: BaseFragment) {

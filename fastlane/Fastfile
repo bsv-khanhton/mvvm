@@ -43,6 +43,13 @@ platform :android do
     linkOTA = jsonResponse["url"]
 
     puts "echo linkOTA: " + linkOTA
+
+    create_build_list = sh "curl -f -s -X POST -H 'sheetid: 1LNYYmlOCXoPK0H0WvKi6153JWKeuBahp1KQqXe7M21E' -d 'startC=B&endC=F&value[]=#{Time.now.strftime('%Y-%m-%d')}&value[]=#{uri}&value[]=#{envName}&value[]=ANDROID&value[]=#{linkOTA}' https://bsv-gitlab-web-hook.herokuapp.com/add-build -L"
+
+    jsonResponseBuild = JSON.parse(create_build_list)
+    noBuild = jsonResponseBuild["message"]
+    puts "echo noBuild: #{noBuild}"
+
     chatwork(
       message: "Build "+env+": " + linkOTA,
       roomid: 128513095,
