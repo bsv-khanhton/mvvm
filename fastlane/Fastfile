@@ -44,10 +44,6 @@ platform :android do
 
     puts "echo linkOTA: " + linkOTA
 
-    jsonResponseBuild = JSON.parse(create_build_list)
-    noBuild = jsonResponseBuild["message"]
-    puts "echo noBuild: #{noBuild}"
-
     chatwork(
       message: "Build "+env+" ("+ Time.now.strftime("%Y/%m/%d %H:%M") +"): " + linkOTA,
       roomid: 128513095,
