@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import vn.com.bravesoft.androidapp.base.BaseFragment
+import vn.com.bravesoft.androidapp.ext.logi
 import vn.com.bravesoft.androidapp.ui.LoginFragment
 import vn.com.bravesoft.androidapp.utils.FragmentUtil
 
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         mFragmentManager = supportFragmentManager
         mFragmentUtil = FragmentUtil.instance
         replaceFragment(LoginFragment())
+        "test fastlane".logi()
     }
 
     private fun replaceFragment(fragment: BaseFragment) {

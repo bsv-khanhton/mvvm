@@ -21,7 +21,7 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 [bundle exec] fastlane android ota
 ```
 
-Runs all the tests
+Build to distribute
 
 ----
 

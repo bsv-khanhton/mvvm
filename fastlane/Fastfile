@@ -44,7 +44,7 @@ platform :android do
 
     puts "echo linkOTA: " + linkOTA
     chatwork(
-      message: "Build app: " + linkOTA,
+      message: "Build "+env+": " + linkOTA,
       roomid: 128513095,
       success: true,
       api_token: "41990099bdf2b651ab4f1d166bf5f132"
