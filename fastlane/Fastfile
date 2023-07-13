@@ -31,7 +31,7 @@ platform :android do
       flavor: env,
       build_type: "Debug"
     )
-    puts "Build done: "
+    puts "Build done2: "
     file_path = lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH]
 
     puts "Build path: " + file_path
