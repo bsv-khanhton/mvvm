@@ -22,7 +22,6 @@ import vn.com.bravesoft.androidapp.modelview.LoginModelView
 import vn.com.bravesoft.androidapp.player.PlayerActivity
 import javax.inject.Inject
 
-
 class LoginFragment : BaseMVVMFragment<LoginModelView>(R.layout.login_layout) {
 
     @Inject
@@ -58,10 +57,10 @@ class LoginFragment : BaseMVVMFragment<LoginModelView>(R.layout.login_layout) {
     override fun init(view: View) {
         binding.tvTitle.text = "MVVM"
         binding.btnLogin.reactiveClick {
-            //viewModel?.login(UserDTO("abc", "12343545"))
+            // viewModel?.login(UserDTO("abc", "12343545"))
             "Login sucsseed".logi()
-            //openImagePicker();
-            val intent = Intent (activity, PlayerActivity::class.java)
+            // openImagePicker();
+            val intent = Intent(activity, PlayerActivity::class.java)
             activity?.startActivity(intent)
         }
     }

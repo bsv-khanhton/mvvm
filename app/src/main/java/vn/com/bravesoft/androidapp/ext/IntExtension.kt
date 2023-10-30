@@ -1,8 +1,5 @@
 package vn.com.bravesoft.androidapp.ext
 
-import android.os.Bundle
-import android.os.Parcelable
-import java.io.Serializable
 import kotlin.math.round
 
 fun Int.toDuration(): String {

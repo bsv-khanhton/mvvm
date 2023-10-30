@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var mFragmentManager: FragmentManager
     lateinit var mFragmentUtil: FragmentUtil
-    var  imageView: ImageView? = null
+    var imageView: ImageView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -53,9 +53,8 @@ class MainActivity : AppCompatActivity() {
             val selectedImageUri: Uri = data?.data!!
             if (null != selectedImageUri) {
                 // update the image view in the layout
-                "selectedImageUri: ${selectedImageUri}".logi()
+                "selectedImageUri: $selectedImageUri".logi()
                 imageView?.setImageURI(selectedImageUri)
-
             }
         }
     }

@@ -32,7 +32,7 @@ class PlayerActivity : BrightcovePlayer() {
             baseVideoView,
             R.layout.video_player_controller
         )
-        val  tvTitle = baseVideoView.findViewById<TextView>(R.id.title_text_view)
+        val tvTitle = baseVideoView.findViewById<TextView>(R.id.title_text_view)
         tvTitle?.text = "Title demo video"
         baseVideoView.setMediaController(mediaController)
         bindingController = VideoPlayerControllerBinding.bind(
@@ -48,27 +48,28 @@ class PlayerActivity : BrightcovePlayer() {
                 }
             }
 
+            it.playerSeekBar.setOnSeekBarChangeListener(
+                object : SeekBar.OnSeekBarChangeListener {
+                    override fun onProgressChanged(
+                        seekBar: SeekBar?,
+                        progress: Int,
+                        fromUser: Boolean
+                    ) {
+                        if (fromUser) {
+                            val seekToDuration = (progress.toLong()).coerceAtMost(baseVideoView.durationLong - 100)
+                            baseVideoView.seekTo(seekToDuration)
+                        } else {
+                            "progress: $progress".logi()
+                        }
+                    }
 
-            it.playerSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-                override fun onProgressChanged(
-                    seekBar: SeekBar?,
-                    progress: Int,
-                    fromUser: Boolean
-                ) {
-                    if (fromUser) {
-                        val seekToDuration = (progress.toLong()).coerceAtMost(baseVideoView.durationLong - 100)
-                        baseVideoView.seekTo(seekToDuration)
-                    } else {
-                        "progress: $progress".logi()
+                    override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                    }
+
+                    override fun onStopTrackingTouch(seekBar: SeekBar?) {
                     }
                 }
-
-                override fun onStartTrackingTouch(seekBar: SeekBar?) {
-                }
-
-                override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                }
-            })
+            )
 
             it.replayButton.reactiveClick {
                 replay()
@@ -95,8 +96,6 @@ class PlayerActivity : BrightcovePlayer() {
         brightcoveVideoView.add(video)
         brightcoveVideoView.start()
 
-
-
         baseVideoView.apply {
             eventEmitter.on(EventType.DID_SET_VIDEO) {
                 updateController()
@@ -115,7 +114,7 @@ class PlayerActivity : BrightcovePlayer() {
             }
 
             eventEmitter.on(EventType.DID_PAUSE) {
-                //viewModel.updateProgress(currentPositionLong.toInt())
+                // viewModel.updateProgress(currentPositionLong.toInt())
                 updateController()
             }
 
@@ -124,46 +123,25 @@ class PlayerActivity : BrightcovePlayer() {
             }
 
             eventEmitter.on(EventType.DID_SEEK_TO) {
-                //viewModel.updateProgress(currentPositionLong.toInt())
+                // viewModel.updateProgress(currentPositionLong.toInt())
                 updateController()
             }
 
             eventEmitter.on(EventType.PROGRESS) {
-                //viewModel.updateProgress(currentPositionLong.toInt())
+                // viewModel.updateProgress(currentPositionLong.toInt())
                 updateController()
             }
 
             eventEmitter.on(EventType.COMPLETED) {
-
                 if (currentVideo == null) return@on
-
-                //viewModel.updateProgress(currentVideo.durationLong.toInt())
-                postDelayed({
-                    seekTo(currentVideo.durationLong)
-                    updateController()
-                }, 100)
-            }
-
-            eventEmitter.on(EventType.AUDIO_TRACKS) {
-                val tracks = it.getProperty(AbstractEvent.TRACKS)
-                if (tracks is ArrayList<*> && tracks.size > 1) {
-                    bindingController?.forwardButton?.nextFocusDownId = R.id.audio_tracks
-                } else {
-                    bindingController?.forwardButton?.nextFocusDownId = R.id.seek_bar
-                }
-            }
-
-            brightcoveMediaController.apply {
-                eventEmitter.on(EventType.HIDE_PLAYER_OPTIONS) {
-                    updateController()
-
-                    // 音声選択が閉じた時にコントローラーをフォーカス可能にする。
-                    (bindingController?.root as? LinearLayout)
-                        ?.descendantFocusability = LinearLayout.FOCUS_BEFORE_DESCENDANTS
-
-                    // 音声選択が閉じた時は音声切り替えボタンにフォーカスを移す。
-                    bindingController?.audioTracks?.requestFocus()
-                }
+                // viewModel.updateProgress(currentVideo.durationLong.toInt())
+                postDelayed(
+                    {
+                        seekTo(currentVideo.durationLong)
+                        updateController()
+                    },
+                    100
+                )
             }
         }
     }
@@ -186,7 +164,6 @@ class PlayerActivity : BrightcovePlayer() {
             seekTo((currentPositionLong + millisecond).coerceAtMost(baseVideoView.durationLong))
         }
     }
-
 
     private fun updateController() {
         baseVideoView.apply {
