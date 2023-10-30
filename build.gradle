@@ -15,6 +15,9 @@ buildscript {
     repositories {
         google()
         jcenter()
+        maven {
+            url 'https://repo.brightcove.com/releases'
+        }
     }
 
     dependencies {
@@ -30,6 +33,9 @@ allprojects {
         google()
         jcenter()
         maven { url 'https://jitpack.io' }
+        maven {
+            url 'https://repo.brightcove.com/releases'
+        }
     }
 }
 

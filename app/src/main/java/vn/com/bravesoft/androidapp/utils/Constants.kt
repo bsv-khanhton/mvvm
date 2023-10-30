@@ -7,4 +7,6 @@ object Constants {
     const val PREFERENCE_NAME = BuildConfig.APPLICATION_ID + ".prefs"
 
     const val RX_CLICK_INTERVEL = 1000L
+
+    const val playerSeekMillisecond = (10 * 1000)
 }

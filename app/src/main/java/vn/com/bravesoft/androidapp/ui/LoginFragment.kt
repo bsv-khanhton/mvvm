@@ -1,6 +1,8 @@
 package vn.com.bravesoft.androidapp.ui
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,9 +18,10 @@ import vn.com.bravesoft.androidapp.ext.getViewModel
 import vn.com.bravesoft.androidapp.ext.logi
 import vn.com.bravesoft.androidapp.ext.reactiveClick
 import vn.com.bravesoft.androidapp.helper.FragmentAggregator
-import vn.com.bravesoft.androidapp.model.UserDTO
 import vn.com.bravesoft.androidapp.modelview.LoginModelView
+import vn.com.bravesoft.androidapp.player.PlayerActivity
 import javax.inject.Inject
+
 
 class LoginFragment : BaseMVVMFragment<LoginModelView>(R.layout.login_layout) {
 
@@ -30,6 +33,8 @@ class LoginFragment : BaseMVVMFragment<LoginModelView>(R.layout.login_layout) {
     private val binding: LoginLayoutBinding by viewBinding()
 
     private val component: FragmentComponent by bindComponent()
+
+    private val REQUEST_IMAGE_PICKER = 100
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,9 +58,17 @@ class LoginFragment : BaseMVVMFragment<LoginModelView>(R.layout.login_layout) {
     override fun init(view: View) {
         binding.tvTitle.text = "MVVM"
         binding.btnLogin.reactiveClick {
-            viewModel?.login(UserDTO("abc", "12343545"))
+            //viewModel?.login(UserDTO("abc", "12343545"))
             "Login sucsseed".logi()
+            //openImagePicker();
+            val intent = Intent (activity, PlayerActivity::class.java)
+            activity?.startActivity(intent)
         }
+    }
+
+    private fun openImagePicker() {
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        startActivityForResult(intent, REQUEST_IMAGE_PICKER)
     }
 
     companion object {

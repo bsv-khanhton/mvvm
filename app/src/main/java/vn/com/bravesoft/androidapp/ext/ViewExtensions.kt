@@ -51,3 +51,19 @@ fun View.makeInVisible() {
 fun View.makeGone() {
     visibility = View.GONE
 }
+
+fun View.visible(visible: Boolean) {
+    visibility = if (visible) {
+        View.VISIBLE
+    } else {
+        View.GONE
+    }
+}
+
+fun View.invisible(invisible: Boolean) {
+    visibility = if (invisible) {
+        View.INVISIBLE
+    } else {
+        View.VISIBLE
+    }
+}
