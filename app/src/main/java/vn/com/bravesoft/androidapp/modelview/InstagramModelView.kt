@@ -4,7 +4,6 @@ import vn.com.bravesoft.androidapp.api.ApiConsumer
 import vn.com.bravesoft.androidapp.base.BaseModelView
 import vn.com.bravesoft.androidapp.ext.logi
 import vn.com.bravesoft.androidapp.model.response.InstagramResponse
-import vn.com.bravesoft.androidapp.model.response.LoginResponse
 import vn.com.bravesoft.androidapp.rx.SingleLiveEvent
 import vn.com.bravesoft.androidapp.usecase.InstagramUseCase
 import javax.inject.Inject

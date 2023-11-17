@@ -2,7 +2,6 @@ package vn.com.bravesoft.androidapp.ui
 
 import android.Manifest
 import android.content.Context
-import android.os.Build
 import android.view.View
 import android.viewbinding.library.fragment.viewBinding
 import androidx.core.content.ContextCompat
@@ -26,28 +25,29 @@ class VoiceSearchFragment : BaseFragment(R.layout.voice_search_layout) {
     }
 
     private fun handleEvent() {
-        voiceSearchManager.setSearchListener(object : VoiceSearchManager.SearchListener {
-            override fun onQuerySubmit(query: String) {
-                // khi kết thúc search
-                binding.textResult.text = query
-            }
+        voiceSearchManager.setSearchListener(
+            object : VoiceSearchManager.SearchListener {
+                override fun onQuerySubmit(query: String) {
+// khi kết thúc search
+                    binding.textResult.text = query
+                }
 
-            override fun onStart() {
-                binding.textResult.text = "Start..."
-                binding.buttonVoiceSearch.setColorFilter(ContextCompat.getColor(requireContext(), R.color.colorAccent))
-            }
+                override fun onStart() {
+                    binding.textResult.text = "Start..."
+                    binding.buttonVoiceSearch.setColorFilter(ContextCompat.getColor(requireContext(), R.color.colorAccent))
+                }
 
-            override fun onStop() {
-                binding.textResult.text = "Stop..."
-                binding.buttonVoiceSearch.setColorFilter(ContextCompat.getColor(requireContext(), R.color.main))
-            }
+                override fun onStop() {
+                    binding.textResult.text = "Stop..."
+                    binding.buttonVoiceSearch.setColorFilter(ContextCompat.getColor(requireContext(), R.color.main))
+                }
 
-            override fun onQueryChange(query: String) {
-                // đang trong quá trình nói
-                binding.textResult.text = query
+                override fun onQueryChange(query: String) {
+// đang trong quá trình nói
+                    binding.textResult.text = query
+                }
             }
-
-        })
+        )
 
         binding.buttonVoiceSearch.reactiveClick {
             var permissionsType = Manifest.permission.RECORD_AUDIO

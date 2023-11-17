@@ -2,12 +2,12 @@ package vn.com.bravesoft.androidapp.view
 
 import android.content.Context
 import android.util.AttributeSet
-import  androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatImageView
 
 /**
  * Created by KhanhTon on 5/28/20
  */
-class InstagramImageView: AppCompatImageView {
+class InstagramImageView : AppCompatImageView {
 
     private var mRatio: Float = 1F
 

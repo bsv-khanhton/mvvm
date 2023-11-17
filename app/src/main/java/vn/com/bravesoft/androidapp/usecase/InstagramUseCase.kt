@@ -3,7 +3,6 @@ package vn.com.bravesoft.androidapp.usecase
 import io.reactivex.Observable
 import vn.com.bravesoft.androidapp.api.ApiStores
 import vn.com.bravesoft.androidapp.model.response.InstagramResponse
-import vn.com.bravesoft.androidapp.model.response.LoginResponse
 import javax.inject.Inject
 
 /**

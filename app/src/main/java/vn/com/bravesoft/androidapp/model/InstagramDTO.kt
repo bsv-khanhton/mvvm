@@ -2,7 +2,7 @@ package vn.com.bravesoft.androidapp.model
 
 import com.google.gson.annotations.SerializedName
 
-data class InstagramDTO (
+data class InstagramDTO(
     @SerializedName("id")
     val id: String,
     @SerializedName("caption")

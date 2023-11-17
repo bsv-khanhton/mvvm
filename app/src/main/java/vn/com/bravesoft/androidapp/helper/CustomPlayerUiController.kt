@@ -14,7 +14,6 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.YouTube
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import vn.com.bravesoft.androidapp.R
 
-
 internal class CustomPlayerUiController(
     private val context: Context,
     customPlayerUi: View,
@@ -48,15 +47,17 @@ internal class CustomPlayerUiController(
     }
 
     override fun onReady(youTubePlayer: YouTubePlayer) {
-        //progressbar!!.visibility = View.GONE
+        // progressbar!!.visibility = View.GONE
     }
 
     override fun onStateChange(youTubePlayer: YouTubePlayer, state: PlayerState) {
         if (state == PlayerState.PLAYING || state == PlayerState.PAUSED || state == PlayerState.VIDEO_CUED) {
             panel!!.setBackgroundColor(
                 ContextCompat.getColor(
-                    context, android.R.color.transparent
-                ))
+                    context,
+                    android.R.color.transparent
+                )
+            )
             if (state == PlayerState.PLAYING) {
                 playPauseButton?.isSelected = true
             } else if (state == PlayerState.PAUSED) {
@@ -64,7 +65,8 @@ internal class CustomPlayerUiController(
             }
         } else if (state == PlayerState.BUFFERING) panel!!.setBackgroundColor(
             ContextCompat.getColor(
-                context, android.R.color.transparent
+                context,
+                android.R.color.transparent
             )
         )
     }
@@ -72,7 +74,7 @@ internal class CustomPlayerUiController(
     @SuppressLint("SetTextI18n")
     override fun onCurrentSecond(youTubePlayer: YouTubePlayer, second: Float) {
         videoCurrentTimeTextView!!.text = second.toString() + ""
-        val timeCurrentPer = (second/durationVideo) * 100
+        val timeCurrentPer = (second / durationVideo) * 100
     }
 
     @SuppressLint("SetTextI18n")

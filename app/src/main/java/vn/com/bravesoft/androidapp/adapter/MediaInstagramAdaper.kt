@@ -20,13 +20,13 @@ class MediaInstagramAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var onCallback: CallbackInstagram? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MediaInstagramViewHolder {
-        val view =LayoutInflater.from(parent.context).inflate(R.layout.item_instagram, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_instagram, parent, false)
         return MediaInstagramViewHolder(view)
     }
 
-    override fun getItemViewType(position: Int): Int{
-        if(position >= datas.size) return 0
-        return if(datas[position] == null)  0 else 1
+    override fun getItemViewType(position: Int): Int {
+        if (position >= datas.size) return 0
+        return if (datas[position] == null) 0 else 1
     }
 
     override fun getItemCount(): Int {
@@ -54,13 +54,12 @@ class MediaInstagramAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }*/
 
-
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         (holder as MediaInstagramViewHolder).bind(datas[position])
     }
 
     inner class MediaInstagramViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(item: InstagramDTO?){
+        fun bind(item: InstagramDTO?) {
             item ?: return
             if (item!!.mediaType == "IMAGE") {
                 itemView.findViewById<ImageView>(R.id.ivThumbnail).load(item.mediaUrl)

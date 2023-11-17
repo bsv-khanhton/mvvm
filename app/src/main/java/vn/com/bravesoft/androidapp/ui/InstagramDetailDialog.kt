@@ -4,16 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebChromeClient
-import android.webkit.WebView
-import android.webkit.WebViewClient
 import android.widget.Button
-import android.widget.ImageView
 import androidx.annotation.NonNull
 import androidx.annotation.Nullable
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.Fragment
-import com.brightcove.player.mediacontroller.BrightcoveMediaController
 import com.brightcove.player.model.DeliveryType
 import com.brightcove.player.model.Video
 import com.brightcove.player.view.BrightcoveExoPlayerVideoView
@@ -22,13 +16,13 @@ import vn.com.bravesoft.androidapp.ext.load
 import vn.com.bravesoft.androidapp.ext.reactiveClick
 import vn.com.bravesoft.androidapp.ext.visible
 import vn.com.bravesoft.androidapp.view.InstagramImageView
+import java.net.URI
+import java.net.URISyntaxException
 
-
-class InstagramDetailDialog: DialogFragment() {
+class InstagramDetailDialog : DialogFragment() {
     private var btnClose: Button? = null
     private var ivInstagramDetail: InstagramImageView? = null
     private var brightcoveExoPlayerVideoView: BrightcoveExoPlayerVideoView? = null
-
 
     @Nullable
     override fun onCreateView(
@@ -49,8 +43,8 @@ class InstagramDetailDialog: DialogFragment() {
             dismiss()
         }
 
-        val mediaUrl =  arguments?.getString("media_url")
-        val mediaType =  arguments?.getString("media_type")
+        val mediaUrl = arguments?.getString("media_url")
+        val mediaType = arguments?.getString("media_type")
         if (mediaType == "IMAGE") {
             ivInstagramDetail?.visible(true)
             brightcoveExoPlayerVideoView?.visible(false)
@@ -62,7 +56,6 @@ class InstagramDetailDialog: DialogFragment() {
                 mediaUrl!!,
                 DeliveryType.MP4
             )
-
             brightcoveExoPlayerVideoView?.mediaController = null
             brightcoveExoPlayerVideoView?.add(video2)
             brightcoveExoPlayerVideoView?.start()

@@ -7,8 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.viewbinding.library.fragment.viewBinding
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import vn.com.bravesoft.androidapp.R
 import vn.com.bravesoft.androidapp.base.BaseMVVMFragment
@@ -23,7 +21,6 @@ import vn.com.bravesoft.androidapp.helper.FragmentAggregator
 import vn.com.bravesoft.androidapp.modelview.LoginModelView
 import vn.com.bravesoft.androidapp.player.PlayerActivity
 import javax.inject.Inject
-
 
 class LoginFragment : BaseMVVMFragment<LoginModelView>(R.layout.login_layout) {
 
@@ -55,14 +52,14 @@ class LoginFragment : BaseMVVMFragment<LoginModelView>(R.layout.login_layout) {
     }
 
     override fun init(view: View) {
-       binding.tvTitle?.text = "Demo JCom"
+        binding.tvTitle?.text = "Demo JCom"
         binding.btnLogin.reactiveClick {
             // viewModel?.login(UserDTO("abc", "12343545"))
             "Login sucsseed".logi()
             // openImagePicker();
             val intent = Intent(activity, PlayerActivity::class.java)
             activity?.startActivity(intent)
-            //mMainActivity?.replaceFragmentTest(VideoPlayerFragment())
+            // mMainActivity?.replaceFragmentTest(VideoPlayerFragment())
         }
 
         binding.btnOpenBrowser.reactiveClick {

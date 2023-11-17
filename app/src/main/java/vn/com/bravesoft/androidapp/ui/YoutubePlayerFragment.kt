@@ -10,8 +10,6 @@ import vn.com.bravesoft.androidapp.R
 import vn.com.bravesoft.androidapp.base.BaseFragment
 import vn.com.bravesoft.androidapp.databinding.YoutubeLayerLayoutBinding
 import vn.com.bravesoft.androidapp.ext.argument
-import vn.com.bravesoft.androidapp.helper.CustomPlayerUiController
-
 
 class YoutubePlayerFragment : BaseFragment(R.layout.youtube_layer_layout) {
     private val binding: YoutubeLayerLayoutBinding by viewBinding()
@@ -32,18 +30,20 @@ class YoutubePlayerFragment : BaseFragment(R.layout.youtube_layer_layout) {
     override fun init(view: View) {
         /*val customPlayerUi: View =
             binding.youtubePlayerView.inflateCustomPlayerUi(R.layout.video_player_controller)*/
-        binding.youtubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
-            override fun onReady(@NonNull youTubePlayer: YouTubePlayer) {
-                /*val customPlayerUiController = CustomPlayerUiController(
+        binding.youtubePlayerView.addYouTubePlayerListener(
+            object : AbstractYouTubePlayerListener() {
+                override fun onReady(@NonNull youTubePlayer: YouTubePlayer) {
+/*val customPlayerUiController = CustomPlayerUiController(
                     requireContext(),
                     customPlayerUi,
                     youTubePlayer,
                     binding.youtubePlayerView
                 )
                 youTubePlayer.addListener(customPlayerUiController)*/
-                youTubePlayer.loadVideo(videoID, 0f)
+                    youTubePlayer.loadVideo(videoID, 0f)
+                }
             }
-        })
+        )
     }
 
     override fun onPause() {

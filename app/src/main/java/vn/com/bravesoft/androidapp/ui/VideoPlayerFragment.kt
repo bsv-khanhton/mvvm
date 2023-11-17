@@ -11,14 +11,12 @@ import vn.com.bravesoft.androidapp.base.BaseFragment
 class VideoPlayerFragment : BaseFragment(R.layout.instagram_player) {
     lateinit var brightcoveExoPlayerVideoView: BrightcoveExoPlayerVideoView
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         brightcoveExoPlayerVideoView = view.findViewById(R.id.brightcove_video_view)
     }
 
     override fun init(view: View) {
-
     }
 
     fun playVideo(url: String) {

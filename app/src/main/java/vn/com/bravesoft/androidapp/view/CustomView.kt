@@ -3,12 +3,11 @@ package vn.com.bravesoft.androidapp.view
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.FrameLayout
-import  androidx.appcompat.widget.AppCompatImageView
 
 /**
  * Created by KhanhTon on 5/28/20
  */
-class CustomView: FrameLayout {
+class CustomView : FrameLayout {
 
     constructor(context: Context) : super(context) {
     }

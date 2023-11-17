@@ -44,12 +44,11 @@ class VideoListFragment : BaseFragment(R.layout.video_list_layout), CallbackSear
         }
 
         binding.rvVideoList.apply {
-            layoutManager = GridLayoutManager(context,5, RecyclerView.VERTICAL, false)
+            layoutManager = GridLayoutManager(context, 5, RecyclerView.VERTICAL, false)
             adapter = searchAdapter
             setHasFixedSize(false)
             addItemDecoration(ItemOffsetDecoration(requireContext(), R.dimen._8sdp))
         }
-
     }
 
     override fun callbackSearch(id: String) {

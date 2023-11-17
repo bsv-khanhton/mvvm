@@ -4,17 +4,14 @@ import android.os.Bundle
 import android.view.KeyEvent
 import android.widget.SeekBar
 import android.widget.TextView
-import android.widget.Toast
 import com.brightcove.player.event.EventType
 import com.brightcove.player.mediacontroller.BrightcoveMediaController
 import com.brightcove.player.model.DeliveryType
 import com.brightcove.player.model.Video
 import com.brightcove.player.view.BrightcoveExoPlayerVideoView
 import com.brightcove.player.view.BrightcovePlayer
-import org.greenrobot.eventbus.EventBus
 import vn.com.bravesoft.androidapp.R
 import vn.com.bravesoft.androidapp.databinding.VideoPlayerControllerBinding
-import vn.com.bravesoft.androidapp.event.KeyEventBus
 import vn.com.bravesoft.androidapp.ext.logi
 import vn.com.bravesoft.androidapp.ext.reactiveClick
 import vn.com.bravesoft.androidapp.ext.toDuration
@@ -70,7 +67,7 @@ class PlayerActivity : BrightcovePlayer() {
                             baseVideoView.seekTo(seekToDuration)
                             it.playerSeekBar.clearFocus()
                         } else {
-                            //"progress: $progress".logi()
+                            // "progress: $progress".logi()
                         }
                     }
 
@@ -117,7 +114,7 @@ class PlayerActivity : BrightcovePlayer() {
             e.printStackTrace()
         }
 
-        //baseVideoView.add(video)
+        // baseVideoView.add(video)
         baseVideoView.add(video2)
         baseVideoView.start()
 
@@ -253,7 +250,7 @@ class PlayerActivity : BrightcovePlayer() {
                     baseVideoView.brightcoveMediaController?.apply {
                         if (!isHideControllerEnable) {
                             isHideControllerEnable = true
-                            //if (isShowing && replayButton.hasFocus()) play.requestFocus()
+                            // if (isShowing && replayButton.hasFocus()) play.requestFocus()
                         }
                     }
                 }

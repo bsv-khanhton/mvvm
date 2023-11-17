@@ -23,7 +23,8 @@ import vn.com.bravesoft.androidapp.modelview.InstagramModelView
 import vn.com.bravesoft.androidapp.recyclerview.ItemOffsetDecoration
 import javax.inject.Inject
 
-class InstagramListFragment : BaseMVVMFragment<InstagramModelView>(R.layout.instagram_list_layout),
+class InstagramListFragment :
+    BaseMVVMFragment<InstagramModelView>(R.layout.instagram_list_layout),
     CallbackInstagram {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
@@ -63,7 +64,7 @@ class InstagramListFragment : BaseMVVMFragment<InstagramModelView>(R.layout.inst
         }
 
         binding.rvInstagramList.apply {
-            layoutManager = GridLayoutManager(context,5, RecyclerView.VERTICAL, false)
+            layoutManager = GridLayoutManager(context, 5, RecyclerView.VERTICAL, false)
             adapter = mAdapter
             setHasFixedSize(false)
             addItemDecoration(ItemOffsetDecoration(requireContext(), R.dimen._8sdp))

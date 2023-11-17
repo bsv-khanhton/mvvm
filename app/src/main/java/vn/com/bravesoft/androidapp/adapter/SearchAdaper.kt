@@ -1,6 +1,5 @@
 package vn.com.bravesoft.androidapp.adapter
 
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,13 +18,13 @@ class SearchAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var onCallbackSearch: CallbackSearch? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
-        val view =LayoutInflater.from(parent.context).inflate(R.layout.item_search, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_search, parent, false)
         return SearchViewHolder(view)
     }
 
-    override fun getItemViewType(position: Int): Int{
-        if(position >= datas.size) return 0
-        return if(datas[position] == null)  0 else 1
+    override fun getItemViewType(position: Int): Int {
+        if (position >= datas.size) return 0
+        return if (datas[position] == null) 0 else 1
     }
 
     override fun getItemCount(): Int {
@@ -53,13 +52,12 @@ class SearchAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }*/
 
-
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         (holder as SearchViewHolder).bind(datas[position])
     }
 
     inner class SearchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(item: VideoDTO?){
+        fun bind(item: VideoDTO?) {
             item ?: return
             itemView.findViewById<ImageView>(R.id.ivThumbnail).load("https://img.youtube.com/vi/${item.videoID}/0.jpg")
             itemView.setOnClickListener {

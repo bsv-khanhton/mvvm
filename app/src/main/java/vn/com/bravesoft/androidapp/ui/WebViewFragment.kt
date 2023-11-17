@@ -7,7 +7,6 @@ import android.webkit.WebViewClient
 import vn.com.bravesoft.androidapp.R
 import vn.com.bravesoft.androidapp.base.BaseFragment
 import vn.com.bravesoft.androidapp.databinding.WebviewLayoutBinding
-import vn.com.bravesoft.androidapp.ext.argument
 import vn.com.bravesoft.androidapp.ext.argumentNullable
 
 class WebViewFragment : BaseFragment(R.layout.webview_layout) {
@@ -15,9 +14,10 @@ class WebViewFragment : BaseFragment(R.layout.webview_layout) {
 
     private var videoID: String? by argumentNullable()
 
-    private val html = """
+    private val html =
+        """
         <iframe id="player" src="https://www.youtube.com/embed/HsLvnFQW_yM" allowfullscreen></iframe>
-    """.trimIndent()
+        """.trimIndent()
 
     companion object {
         fun newInstance(videoID: String?): WebViewFragment = WebViewFragment().apply {
@@ -28,7 +28,7 @@ class WebViewFragment : BaseFragment(R.layout.webview_layout) {
     override fun init(view: View) {
         binding.webView.settings.javaScriptEnabled = true
         binding.webView.settings.domStorageEnabled = true
-        val webClient = object : WebViewClient(){}
+        val webClient = object : WebViewClient() {}
         binding.webView.webViewClient = webClient
         binding.webView.webChromeClient = WebChromeClient()
         if (videoID != null) {

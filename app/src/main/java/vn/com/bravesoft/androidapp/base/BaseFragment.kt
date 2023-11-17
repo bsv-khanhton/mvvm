@@ -10,7 +10,6 @@ import com.kaopiz.kprogresshud.KProgressHUD
 import com.nabinbhandari.android.permissions.PermissionHandler
 import com.nabinbhandari.android.permissions.Permissions
 import vn.com.bravesoft.androidapp.MainActivity
-import vn.com.bravesoft.androidapp.R
 import vn.com.bravesoft.androidapp.ext.logi
 
 abstract class BaseFragment(@LayoutRes private val rootLayout: Int) : Fragment() {

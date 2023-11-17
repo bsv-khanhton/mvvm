@@ -2,8 +2,8 @@ package vn.com.bravesoft.androidapp.modelview
 
 import vn.com.bravesoft.androidapp.api.ApiConsumer
 import vn.com.bravesoft.androidapp.base.BaseModelView
-import vn.com.bravesoft.androidapp.model.response.LoginResponse
 import vn.com.bravesoft.androidapp.model.UserDTO
+import vn.com.bravesoft.androidapp.model.response.LoginResponse
 import vn.com.bravesoft.androidapp.rx.SingleLiveEvent
 import vn.com.bravesoft.androidapp.usecase.LoginUseCase
 import javax.inject.Inject
