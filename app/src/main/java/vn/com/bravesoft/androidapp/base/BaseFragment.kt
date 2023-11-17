@@ -7,7 +7,10 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import com.kaopiz.kprogresshud.KProgressHUD
+import com.nabinbhandari.android.permissions.PermissionHandler
+import com.nabinbhandari.android.permissions.Permissions
 import vn.com.bravesoft.androidapp.MainActivity
+import vn.com.bravesoft.androidapp.R
 import vn.com.bravesoft.androidapp.ext.logi
 
 abstract class BaseFragment(@LayoutRes private val rootLayout: Int) : Fragment() {
@@ -82,6 +85,24 @@ abstract class BaseFragment(@LayoutRes private val rootLayout: Int) : Fragment()
     fun loadAPIError(throwable: Throwable) {
         throwable.message?.let {
             it.logi()
+        }
+    }
+
+    fun checkSinglePermission(
+        permissionType: String,
+        title: String = "",
+        message: String = "",
+        handler: PermissionHandler
+    ) {
+        context?.let {
+            val array = arrayOf(permissionType)
+
+            val options = Permissions.Options()
+                .setSettingsDialogTitle(title)
+                .setSettingsText("Setting")
+                .setSettingsDialogMessage(message)
+
+            Permissions.check(it, array, null, options, handler)
         }
     }
 }

@@ -2,29 +2,32 @@ package vn.com.bravesoft.androidapp.modelview
 
 import vn.com.bravesoft.androidapp.api.ApiConsumer
 import vn.com.bravesoft.androidapp.base.BaseModelView
+import vn.com.bravesoft.androidapp.ext.logi
+import vn.com.bravesoft.androidapp.model.response.InstagramResponse
 import vn.com.bravesoft.androidapp.model.response.LoginResponse
-import vn.com.bravesoft.androidapp.model.UserDTO
 import vn.com.bravesoft.androidapp.rx.SingleLiveEvent
-import vn.com.bravesoft.androidapp.usecase.LoginUseCase
+import vn.com.bravesoft.androidapp.usecase.InstagramUseCase
 import javax.inject.Inject
 
-class LoginModelView @Inject constructor(val useCase: LoginUseCase) : BaseModelView() {
+class InstagramModelView @Inject constructor(val useCase: InstagramUseCase) : BaseModelView() {
 
-    val onLoginSuccessed: SingleLiveEvent<String> = SingleLiveEvent()
+    val onLoadInstagramSuccessed: SingleLiveEvent<InstagramResponse> = SingleLiveEvent()
 
-    fun login(user: UserDTO) {
+    fun getInstagram() {
         addSubscription(
-            useCase.login(user.username, user.password),
-            object : ApiConsumer<LoginResponse> {
-                override fun onSuccess(response: LoginResponse) {
+            useCase.getInstagram(),
+            object : ApiConsumer<InstagramResponse> {
+                override fun onSuccess(response: InstagramResponse) {
+                    "onSuccess: ${response.data.size}".logi()
                     if (response.status_code == 0) {
-                        onLoginSuccessed.setValue(response.title)
+                        onLoadInstagramSuccessed.setValue(response)
                     } else {
                         onLoadAPIFail.setValue(response.message)
                     }
                 }
 
                 override fun onFailure(throwable: Throwable) {
+                    "onFailure: ${throwable.message}".logi()
                     onLoadAPIError.setValue(throwable)
                 }
 

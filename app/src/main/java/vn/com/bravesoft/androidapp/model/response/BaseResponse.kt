@@ -1,4 +1,4 @@
-package vn.com.bravesoft.androidapp.model
+package vn.com.bravesoft.androidapp.model.response
 
 /**
  * Created by Khanh Ton on 2019-05-30.

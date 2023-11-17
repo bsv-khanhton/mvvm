@@ -7,9 +7,5 @@
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/main_activity_container"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_200sdp"/>
-    <ImageView
-        android:id="@+id/iv"
-        android:layout_width="@dimen/_100sdp"
-        android:layout_height="@dimen/_200sdp"/>
+        android:layout_height="match_parent"/>
 </LinearLayout>

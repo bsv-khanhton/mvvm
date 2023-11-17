@@ -1,6 +1,6 @@
 package vn.com.bravesoft.androidapp.api
 
-import vn.com.bravesoft.androidapp.model.BaseResponse
+import vn.com.bravesoft.androidapp.model.response.BaseResponse
 
 /**
  * Created by Khanh Ton on 2019-05-30.

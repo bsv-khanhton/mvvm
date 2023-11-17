@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
+import vn.com.bravesoft.androidapp.modelview.InstagramModelView
 import vn.com.bravesoft.androidapp.modelview.LoginModelView
 
 /**
@@ -24,4 +25,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(LoginModelView::class)
     abstract fun bindHomeCategoryViewModel(viewModel: LoginModelView): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(InstagramModelView::class)
+    abstract fun bindInstagramModelView(viewModel: InstagramModelView): ViewModel
 }

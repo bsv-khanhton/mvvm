@@ -1,12 +1,14 @@
 package vn.com.bravesoft.androidapp.ui
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.viewbinding.library.fragment.viewBinding
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import vn.com.bravesoft.androidapp.R
 import vn.com.bravesoft.androidapp.base.BaseMVVMFragment
@@ -22,6 +24,7 @@ import vn.com.bravesoft.androidapp.modelview.LoginModelView
 import vn.com.bravesoft.androidapp.player.PlayerActivity
 import javax.inject.Inject
 
+
 class LoginFragment : BaseMVVMFragment<LoginModelView>(R.layout.login_layout) {
 
     @Inject
@@ -32,9 +35,6 @@ class LoginFragment : BaseMVVMFragment<LoginModelView>(R.layout.login_layout) {
     private val binding: LoginLayoutBinding by viewBinding()
 
     private val component: FragmentComponent by bindComponent()
-
-    private val REQUEST_IMAGE_PICKER = 100
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -55,19 +55,39 @@ class LoginFragment : BaseMVVMFragment<LoginModelView>(R.layout.login_layout) {
     }
 
     override fun init(view: View) {
-        binding.tvTitle.text = "MVVM"
+       binding.tvTitle?.text = "Demo JCom"
         binding.btnLogin.reactiveClick {
             // viewModel?.login(UserDTO("abc", "12343545"))
             "Login sucsseed".logi()
             // openImagePicker();
             val intent = Intent(activity, PlayerActivity::class.java)
             activity?.startActivity(intent)
+            //mMainActivity?.replaceFragmentTest(VideoPlayerFragment())
+        }
+
+        binding.btnOpenBrowser.reactiveClick {
+            openBrowser()
+        }
+
+        binding.btnOpenWebView.reactiveClick {
+            openWebView()
+        }
+
+        binding.btnYoutube.reactiveClick {
+            openVideoList()
+        }
+
+        binding.btnOpenVoiceSearch.reactiveClick {
+            openVoiceSearch()
+        }
+
+        binding.btnOpenInstagramList.reactiveClick {
+            openInstagram()
         }
     }
 
-    private fun openImagePicker() {
-        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        startActivityForResult(intent, REQUEST_IMAGE_PICKER)
+    private fun openVoiceSearch() {
+        mMainActivity?.replaceFragment(VoiceSearchFragment())
     }
 
     companion object {
@@ -77,5 +97,26 @@ class LoginFragment : BaseMVVMFragment<LoginModelView>(R.layout.login_layout) {
             fragment.arguments = args
             return fragment
         }
+    }
+
+    private fun openBrowser() {
+        try {
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://bravesoft.co.jp/"))
+            startActivity(browserIntent)
+        } catch (ex: Exception) {
+            "ex: $ex".logi()
+        }
+    }
+
+    private fun openWebView() {
+        mMainActivity?.replaceFragment(WebViewFragment.newInstance(null))
+    }
+
+    private fun openVideoList() {
+        mMainActivity?.replaceFragment(VideoListFragment())
+    }
+
+    private fun openInstagram() {
+        mMainActivity?.replaceFragment(InstagramListFragment())
     }
 }

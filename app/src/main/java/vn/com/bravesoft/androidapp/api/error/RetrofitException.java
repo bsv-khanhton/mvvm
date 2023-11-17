@@ -7,7 +7,7 @@ import okhttp3.ResponseBody;
 import retrofit2.Converter;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import vn.com.bravesoft.androidapp.model.BaseResponse;
+import vn.com.bravesoft.androidapp.model.response.BaseResponse;
 
 /**
  * Created by tqk666 on 5/4/17.

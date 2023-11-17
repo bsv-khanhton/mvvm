@@ -1,18 +1,20 @@
 package vn.com.bravesoft.androidapp.player
 
 import android.os.Bundle
-import android.widget.LinearLayout
+import android.view.KeyEvent
 import android.widget.SeekBar
 import android.widget.TextView
-import com.brightcove.player.event.AbstractEvent
+import android.widget.Toast
 import com.brightcove.player.event.EventType
 import com.brightcove.player.mediacontroller.BrightcoveMediaController
 import com.brightcove.player.model.DeliveryType
 import com.brightcove.player.model.Video
 import com.brightcove.player.view.BrightcoveExoPlayerVideoView
 import com.brightcove.player.view.BrightcovePlayer
+import org.greenrobot.eventbus.EventBus
 import vn.com.bravesoft.androidapp.R
 import vn.com.bravesoft.androidapp.databinding.VideoPlayerControllerBinding
+import vn.com.bravesoft.androidapp.event.KeyEventBus
 import vn.com.bravesoft.androidapp.ext.logi
 import vn.com.bravesoft.androidapp.ext.reactiveClick
 import vn.com.bravesoft.androidapp.ext.toDuration
@@ -20,9 +22,13 @@ import vn.com.bravesoft.androidapp.ext.visible
 import vn.com.bravesoft.androidapp.utils.Constants
 import java.net.URI
 import java.net.URISyntaxException
+import kotlin.time.toDuration
 
 class PlayerActivity : BrightcovePlayer() {
     private var bindingController: VideoPlayerControllerBinding? = null
+    var timer: TextView? = null
+    var timer2: TextView? = null
+    var timer3: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +39,9 @@ class PlayerActivity : BrightcovePlayer() {
             R.layout.video_player_controller
         )
         val tvTitle = baseVideoView.findViewById<TextView>(R.id.title_text_view)
+        timer = findViewById<TextView>(R.id.timer)
+        timer2 = findViewById<TextView>(R.id.timer2)
+        timer3 = findViewById<TextView>(R.id.timer3)
         tvTitle?.text = "Title demo video"
         baseVideoView.setMediaController(mediaController)
         bindingController = VideoPlayerControllerBinding.bind(
@@ -55,11 +64,13 @@ class PlayerActivity : BrightcovePlayer() {
                         progress: Int,
                         fromUser: Boolean
                     ) {
+                        "EventType : $fromUser".logi()
                         if (fromUser) {
                             val seekToDuration = (progress.toLong()).coerceAtMost(baseVideoView.durationLong - 100)
                             baseVideoView.seekTo(seekToDuration)
+                            it.playerSeekBar.clearFocus()
                         } else {
-                            "progress: $progress".logi()
+                            //"progress: $progress".logi()
                         }
                     }
 
@@ -93,8 +104,22 @@ class PlayerActivity : BrightcovePlayer() {
         } catch (e: URISyntaxException) {
             e.printStackTrace()
         }
-        brightcoveVideoView.add(video)
-        brightcoveVideoView.start()
+        val video2: Video = Video.createVideo(
+            "https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8",
+            DeliveryType.HLS
+        )
+        try {
+            val myposterImage =
+                URI("https://i.ytimg.com/vi/fIIOblE2vx8/maxresdefault.jpg")
+            video2.properties[Video.Fields.STILL_IMAGE_URI] =
+                myposterImage
+        } catch (e: URISyntaxException) {
+            e.printStackTrace()
+        }
+
+        //baseVideoView.add(video)
+        baseVideoView.add(video2)
+        baseVideoView.start()
 
         baseVideoView.apply {
             eventEmitter.on(EventType.DID_SET_VIDEO) {
@@ -119,16 +144,19 @@ class PlayerActivity : BrightcovePlayer() {
             }
 
             eventEmitter.on(EventType.SEEK_TO) {
+                "EventType.SEEK_TO".logi()
                 updateController()
             }
 
             eventEmitter.on(EventType.DID_SEEK_TO) {
                 // viewModel.updateProgress(currentPositionLong.toInt())
+                "EventType.DID_SEEK_TO".logi()
                 updateController()
             }
 
             eventEmitter.on(EventType.PROGRESS) {
                 // viewModel.updateProgress(currentPositionLong.toInt())
+                "EventType.PROGRESS".logi()
                 updateController()
             }
 
@@ -143,6 +171,26 @@ class PlayerActivity : BrightcovePlayer() {
                     100
                 )
             }
+        }
+    }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        val keyRewind = KeyEvent.KEYCODE_MEDIA_REWIND
+        val keyPlayStop = KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE
+        val keyForward = KeyEvent.KEYCODE_MEDIA_FAST_FORWARD
+        when (keyCode) {
+            keyRewind -> rewind()
+            keyPlayStop -> playPause()
+            keyForward -> forward()
+        }
+        return super.onKeyDown(keyCode, event)
+    }
+
+    private fun playPause() {
+        if (baseVideoView.isPlaying && baseVideoView.canPause()) {
+            baseVideoView.pause()
+        } else {
+            baseVideoView.start()
         }
     }
 
@@ -161,6 +209,8 @@ class PlayerActivity : BrightcovePlayer() {
     private fun forward(millisecond: Int = Constants.playerSeekMillisecond) {
         baseVideoView.apply {
             if (currentVideo == null) return@apply
+            timer2?.text = currentPositionLong.toInt().toDuration()
+            timer3?.text = (currentPositionLong + millisecond).toInt().toDuration()
             seekTo((currentPositionLong + millisecond).coerceAtMost(baseVideoView.durationLong))
         }
     }
@@ -172,6 +222,7 @@ class PlayerActivity : BrightcovePlayer() {
             bindingController?.apply {
                 endTimeTextView.text = baseVideoView.durationLong.toInt().toDuration()
                 currentTimeTextView.text = currentPositionLong.toInt().toDuration()
+                timer?.text = currentPositionLong.toInt().toDuration()
                 playerSeekBar.max = baseVideoView.durationLong.toInt()
                 playerSeekBar.progress = currentPositionLong.toInt()
                 seekBar.max = baseVideoView.durationLong.toInt()
@@ -200,8 +251,10 @@ class PlayerActivity : BrightcovePlayer() {
                     audioTracks.nextFocusUpId = play.id
 
                     baseVideoView.brightcoveMediaController?.apply {
-                        isHideControllerEnable = true
-                        if (isShowing && replayButton.hasFocus()) play.requestFocus()
+                        if (!isHideControllerEnable) {
+                            isHideControllerEnable = true
+                            //if (isShowing && replayButton.hasFocus()) play.requestFocus()
+                        }
                     }
                 }
             }

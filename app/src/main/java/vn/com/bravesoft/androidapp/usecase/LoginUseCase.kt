@@ -3,7 +3,7 @@ package vn.com.bravesoft.androidapp.usecase
 import io.reactivex.Observable
 import org.json.JSONObject
 import vn.com.bravesoft.androidapp.api.ApiStores
-import vn.com.bravesoft.androidapp.model.LoginResponse
+import vn.com.bravesoft.androidapp.model.response.LoginResponse
 import javax.inject.Inject
 
 /**

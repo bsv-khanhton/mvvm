@@ -1,36 +1,50 @@
 package vn.com.bravesoft.androidapp
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.widget.ImageView
+import android.view.KeyEvent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import org.greenrobot.eventbus.EventBus
 import vn.com.bravesoft.androidapp.base.BaseFragment
+import vn.com.bravesoft.androidapp.event.KeyEventBus
 import vn.com.bravesoft.androidapp.ext.logi
 import vn.com.bravesoft.androidapp.ui.LoginFragment
+import vn.com.bravesoft.androidapp.ui.VideoPlayerFragment
 import vn.com.bravesoft.androidapp.utils.FragmentUtil
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var mFragmentManager: FragmentManager
     lateinit var mFragmentUtil: FragmentUtil
-    var imageView: ImageView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         mFragmentManager = supportFragmentManager
         mFragmentUtil = FragmentUtil.instance
-        imageView = this.findViewById(R.id.iv)
         replaceFragment(LoginFragment())
-        "test fastlane2".logi()
+        //"test fastlane2".logi()
     }
 
-    private fun replaceFragment(fragment: BaseFragment) {
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        "keyCode: $keyCode".logi()
+        //Toast.makeText(this, "Key: $keyCode", Toast.LENGTH_SHORT).show();
+        EventBus.getDefault().post(KeyEventBus(keyCode, event))
+        return super.onKeyDown(keyCode, event)
+    }
+
+     fun replaceFragment(fragment: BaseFragment) {
         replaceFragment(fragment, false)
     }
 
     fun replaceFragment(fragment: BaseFragment, isClearBacktrack: Boolean) {
+        if (isClearBacktrack) {
+            mFragmentUtil.resetBackstack(mFragmentManager)
+        }
+        mFragmentUtil.replaceFragment(mFragmentManager, fragment, R.id.main_activity_container)
+    }
+
+    fun replaceFragmentTest(fragment: Fragment, isClearBacktrack: Boolean) {
         if (isClearBacktrack) {
             mFragmentUtil.resetBackstack(mFragmentManager)
         }
@@ -42,20 +56,6 @@ class MainActivity : AppCompatActivity() {
             finish()
         } else {
             super.onBackPressed()
-        }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode === RESULT_OK) {
-            // compare the resultCode with the
-            // constant
-            val selectedImageUri: Uri = data?.data!!
-            if (null != selectedImageUri) {
-                // update the image view in the layout
-                "selectedImageUri: $selectedImageUri".logi()
-                imageView?.setImageURI(selectedImageUri)
-            }
         }
     }
 }

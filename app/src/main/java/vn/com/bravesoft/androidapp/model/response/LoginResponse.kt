@@ -1,4 +1,4 @@
-package vn.com.bravesoft.androidapp.model
+package vn.com.bravesoft.androidapp.model.response
 
 import com.google.gson.annotations.SerializedName
 
