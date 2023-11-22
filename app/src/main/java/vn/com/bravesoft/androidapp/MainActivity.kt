@@ -2,6 +2,7 @@ package vn.com.bravesoft.androidapp
 
 import android.os.Bundle
 import android.view.KeyEvent
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -27,8 +28,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         "keyCode: $keyCode".logi()
-        // Toast.makeText(this, "Key: $keyCode", Toast.LENGTH_SHORT).show();
-        EventBus.getDefault().post(KeyEventBus(keyCode, event))
+        Toast.makeText(this, "Key: $keyCode", Toast.LENGTH_SHORT).show();
+        //EventBus.getDefault().post(KeyEventBus(keyCode, event))
         return super.onKeyDown(keyCode, event)
     }
 

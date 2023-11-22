@@ -60,5 +60,5 @@ End
 ---------------------------
 
 send file to device
-adb push '/Users/bravesoft/Documents/JCom/demo/DemoPlayer/app/build/outputs/apk/dev/debug/App_Dev_20231113.apk' '/storage/emulated/0/Download/'
+adb push '/Users/bravesoft/Documents/JCom/demo/DemoPlayer/app/build/outputs/apk/dev/debug/Jcom_Dev_20231120.apk' '/storage/emulated/0/Download/'
 

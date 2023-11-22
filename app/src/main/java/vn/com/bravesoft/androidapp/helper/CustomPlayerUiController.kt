@@ -14,7 +14,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.YouTube
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import vn.com.bravesoft.androidapp.R
 
-internal class CustomPlayerUiController(
+class CustomPlayerUiController(
     private val context: Context,
     customPlayerUi: View,
     private val youTubePlayer: YouTubePlayer,
