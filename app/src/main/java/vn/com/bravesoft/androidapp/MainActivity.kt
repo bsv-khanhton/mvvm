@@ -5,6 +5,7 @@ import android.view.KeyEvent
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import org.greenrobot.eventbus.EventBus
 import vn.com.bravesoft.androidapp.base.BaseFragment
@@ -13,7 +14,7 @@ import vn.com.bravesoft.androidapp.ext.logi
 import vn.com.bravesoft.androidapp.ui.LoginFragment
 import vn.com.bravesoft.androidapp.utils.FragmentUtil
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : FragmentActivity() {
 
     lateinit var mFragmentManager: FragmentManager
     lateinit var mFragmentUtil: FragmentUtil
@@ -27,9 +28,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
-        "keyCode: $keyCode".logi()
-        Toast.makeText(this, "Key: $keyCode", Toast.LENGTH_SHORT).show();
-        //EventBus.getDefault().post(KeyEventBus(keyCode, event))
+        //"keyCode: $keyCode".logi()
+        //Toast.makeText(this, "Key: $keyCode", Toast.LENGTH_SHORT).show();
+        EventBus.getDefault().post(KeyEventBus(keyCode, event))
         return super.onKeyDown(keyCode, event)
     }
 

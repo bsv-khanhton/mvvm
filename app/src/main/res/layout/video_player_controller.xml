@@ -1,187 +1,187 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.brightcove.player.mediacontroller.BrightcoveControlBar xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/brightcove_control_bar"
-    style="@style/BrightcoveControlBar"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:ignore="Overdraw, InconsistentLayout">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/ut0710_video_player_controller"
+    <com.brightcove.player.mediacontroller.BrightcoveControlBar
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/brightcove_control_bar"
+        style="@style/BrightcoveControlBar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/black_50"
+        android:orientation="vertical"
+        tools:ignore="Overdraw, InconsistentLayout">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="0dp"
-            android:layout_height="84dp"
-            android:background="@drawable/ut0710_video_player_controller_title_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:id="@+id/ut0710_video_player_controller"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/title_text_view"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="36dp"
-                android:layout_marginVertical="32dp"
-                android:ellipsize="end"
-                android:lineSpacingExtra="8sp"
-                android:maxLines="1"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold"
+                android:layout_height="84dp"
+                android:background="@drawable/ut0710_video_player_controller_title_background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/title_text_view"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="36dp"
+                    android:layout_marginVertical="32dp"
+                    android:ellipsize="end"
+                    android:lineSpacingExtra="8sp"
+                    android:maxLines="1"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇…" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <Button
+                android:id="@+id/rewind_button"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="32dp"
+                android:background="@drawable/ut0710_video_player_controller_rewind_button"
+                android:stateListAnimator="@drawable/ut0710_video_player_controller_button_animator"
+                android:text="empty"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@id/play"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/ut0710_video_player_controller_play_button_selector"
+                android:stateListAnimator="@drawable/ut0710_video_player_controller_button_animator"
+                android:text=""
+                android:textColor="@android:color/transparent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇…" />
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/replay_button"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/ut0710_video_player_controller_replay_button"
+                android:stateListAnimator="@drawable/ut0710_video_player_controller_button_animator"
+                android:text=""
+                android:textColor="@android:color/transparent"
+                android:visibility="gone"
+                tools:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/forward_button"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/ut0710_video_player_controller_forward_button"
+                android:stateListAnimator="@drawable/ut0710_video_player_controller_button_animator"
+                android:text=""
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/audio_tracks"
+                android:layout_width="110dp"
+                android:layout_height="64dp"
+                android:layout_marginStart="27.5dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/ut0710_video_player_controller_audio_select_button"
+                android:stateListAnimator="@drawable/ut0710_video_player_controller_button_animator"
+                android:text=""
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:nextFocusUp="@id/play"
+                app:layout_constraintBottom_toTopOf="@+id/time_layout"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/time_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/seek_bar"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:id="@+id/current_time_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="-2sp"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    tools:text="00:00" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="-2sp"
+                    android:text="@string/time_separator"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/end_time_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="-2sp"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    tools:text="00:00" />
+
+            </LinearLayout>
+
+            <com.brightcove.player.mediacontroller.BrightcoveSeekBar
+                android:id="@+id/seek_bar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="32dp"
+                android:focusable="false"
+                android:indeterminateDrawable="@drawable/player_progress"
+                android:maxHeight="6dp"
+                android:progressDrawable="@drawable/player_progress"
+                android:thumb="@null"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.brightcove.player.mediacontroller.BrightcoveSeekBar
+                android:id="@+id/player_seek_bar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="32dp"
+                android:alpha="0"
+                android:indeterminateDrawable="@drawable/player_progress"
+                android:maxHeight="6dp"
+                android:progressDrawable="@drawable/player_progress"
+                android:thumb="@drawable/ut0710_video_player_controller_seekbar_thumb_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <Button
-            android:id="@+id/rewind_button"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginStart="32dp"
-            android:background="@drawable/ut0710_video_player_controller_rewind_button"
-            android:stateListAnimator="@drawable/ut0710_video_player_controller_button_animator"
-            android:text=""
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@id/play"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:background="@drawable/ut0710_video_player_controller_play_button_selector"
-            android:stateListAnimator="@drawable/ut0710_video_player_controller_button_animator"
-            android:text=""
-            android:textColor="@android:color/transparent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/replay_button"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:background="@drawable/ut0710_video_player_controller_replay_button"
-            android:stateListAnimator="@drawable/ut0710_video_player_controller_button_animator"
-            android:text=""
-            android:textColor="@android:color/transparent"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:visibility="visible" />
-
-        <Button
-            android:id="@+id/forward_button"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginEnd="32dp"
-            android:background="@drawable/ut0710_video_player_controller_forward_button"
-            android:stateListAnimator="@drawable/ut0710_video_player_controller_button_animator"
-            android:text=""
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/audio_tracks"
-            android:layout_width="110dp"
-            android:layout_height="64dp"
-            android:layout_marginStart="27.5dp"
-            android:layout_marginBottom="12dp"
-            android:background="@drawable/ut0710_video_player_controller_audio_select_button"
-            android:nextFocusUp="@id/play"
-            android:stateListAnimator="@drawable/ut0710_video_player_controller_button_animator"
-            android:text=""
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@+id/time_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:visibility="visible" />
-
-        <LinearLayout
-            android:id="@+id/time_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginBottom="8dp"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toTopOf="@+id/seek_bar"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <TextView
-                android:id="@+id/current_time_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:lineSpacingExtra="-2sp"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                tools:text="00:00" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:lineSpacingExtra="-2sp"
-                android:text="@string/time_separator"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/end_time_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:lineSpacingExtra="-2sp"
-                android:text=""
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                tools:text="00:00" />
-
-        </LinearLayout>
-
-        <com.brightcove.player.mediacontroller.BrightcoveSeekBar
-            android:id="@+id/seek_bar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginBottom="32dp"
-            android:focusable="false"
-            android:indeterminateDrawable="@drawable/player_progress"
-            android:maxHeight="6dp"
-            android:progressDrawable="@drawable/player_progress"
-            android:thumb="@null"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <com.brightcove.player.mediacontroller.BrightcoveSeekBar
-            android:id="@+id/player_seek_bar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginBottom="32dp"
-            android:alpha="0"
-            android:indeterminateDrawable="@drawable/player_progress"
-            android:maxHeight="6dp"
-            android:progressDrawable="@drawable/player_progress"
-            android:thumb="@drawable/ut0710_video_player_controller_seekbar_thumb_icon"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</com.brightcove.player.mediacontroller.BrightcoveControlBar>
-
+    </com.brightcove.player.mediacontroller.BrightcoveControlBar>

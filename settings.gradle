@@ -1,2 +1,4 @@
 include ':app'
 rootProject.name='BaseMVVMKotlin'
+include ':youtubeplayer'
+include ':custom-ui-youtube'

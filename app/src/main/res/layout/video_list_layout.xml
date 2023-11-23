@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.leanback.widget.VerticalGridView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rvVideoList"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvVideoList"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        tools:itemCount="10"
-        tools:listitem="@layout/item_search"
-        />
-</LinearLayout>
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    app:layoutManager="androidx.leanback.widget.GridLayoutManager"
+    tools:itemCount="10"
+    tools:listitem="@layout/item_search"
+    />

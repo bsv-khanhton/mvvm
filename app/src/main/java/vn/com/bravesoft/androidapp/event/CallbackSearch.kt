@@ -5,4 +5,5 @@ package vn.com.bravesoft.androidapp.event
  */
 interface CallbackSearch {
     fun callbackSearch(id: String)
+    fun callbackFocus(index: Int)
 }

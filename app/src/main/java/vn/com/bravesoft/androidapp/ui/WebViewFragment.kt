@@ -39,4 +39,5 @@ class WebViewFragment : BaseFragment(R.layout.webview_layout) {
             binding.webView.loadUrl("https://bravesoft.co.jp/")
         }
     }
+
 }

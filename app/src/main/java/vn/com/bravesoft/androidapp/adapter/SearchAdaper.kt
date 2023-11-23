@@ -65,6 +65,7 @@ class SearchAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
             itemView.setOnFocusChangeListener { v, hasFocus ->
                 if (hasFocus) {
+                    onCallbackSearch?.callbackFocus(absoluteAdapterPosition)
                     itemView.findViewById<View>(R.id.viewThumbnail).setBackgroundResource(R.color.colorAccent)
                 } else {
                     itemView.findViewById<View>(R.id.viewThumbnail).setBackgroundResource(R.color.white)

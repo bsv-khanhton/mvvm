@@ -1,12 +1,8 @@
 package vn.com.bravesoft.androidapp.view
 
-import android.content.Intent
 import android.graphics.drawable.Drawable
-import android.net.Uri
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.core.content.ContextCompat
@@ -37,32 +33,20 @@ class CustomYoutubePlayerUiController(private val youTubePlayerView: YouTubePlay
     private val panel: View = rootView.findViewById(R.id.panel)
 
     private val controlsContainer: View = rootView.findViewById(R.id.controls_container)
-    private val extraViewsContainer: LinearLayout = rootView.findViewById(R.id.extra_views_container)
 
     private val videoTitle: TextView = rootView.findViewById(R.id.video_title)
     private val liveVideoIndicator: TextView = rootView.findViewById(R.id.live_video_indicator)
 
     private val progressBar: ProgressBar = rootView.findViewById(R.id.progress)
-    private val menuButton: ImageView = rootView.findViewById(R.id.menu_button)
     private val playPauseButton: ImageView = rootView.findViewById(R.id.play_pause_button)
-    private val youTubeButton: ImageView = rootView.findViewById(R.id.youtube_button)
-    private val fullscreenButton: ImageView = rootView.findViewById(R.id.fullscreen_button)
-
-    private val customActionLeft: ImageView = rootView.findViewById(R.id.custom_action_left_button)
-    private val customActionRight: ImageView = rootView.findViewById(R.id.custom_action_right_button)
 
     private val youtubePlayerSeekBar: YouTubePlayerSeekBar = rootView.findViewById(R.id.youtube_player_seekbar)
     private val fadeControlsContainer: FadeViewHelper = FadeViewHelper(controlsContainer)
 
-    private var onFullscreenButtonListener: View.OnClickListener
-    private var onMenuButtonClickListener: View.OnClickListener
 
     private var isPlaying = false
     private var isPlayPauseButtonEnabled = true
-    private var isCustomActionLeftEnabled = false
-    private var isCustomActionRightEnabled = false
 
-    private var isMatchParent = false
 
     private val youTubePlayerStateListener = object : AbstractYouTubePlayerListener() {
         override fun onStateChange(youTubePlayer: YouTubePlayer, state: PlayerConstants.PlayerState) {
@@ -73,8 +57,6 @@ class CustomYoutubePlayerUiController(private val youTubePlayerView: YouTubePlay
                 progressBar.visibility = View.GONE
 
                 if (isPlayPauseButtonEnabled) playPauseButton.visibility = View.VISIBLE
-                if (isCustomActionLeftEnabled) customActionLeft.visibility = View.VISIBLE
-                if (isCustomActionRightEnabled) customActionRight.visibility = View.VISIBLE
 
                 updatePlayPauseButtonIcon(state === PlayerConstants.PlayerState.PLAYING)
 
@@ -90,9 +72,6 @@ class CustomYoutubePlayerUiController(private val youTubePlayerView: YouTubePlay
                         )
                     )
                     if (isPlayPauseButtonEnabled) playPauseButton.visibility = View.INVISIBLE
-
-                    customActionLeft.visibility = View.GONE
-                    customActionRight.visibility = View.GONE
                 }
 
                 if (state === PlayerConstants.PlayerState.UNSTARTED) {
@@ -103,31 +82,11 @@ class CustomYoutubePlayerUiController(private val youTubePlayerView: YouTubePlay
         }
 
         override fun onVideoId(youTubePlayer: YouTubePlayer, videoId: String) {
-            youTubeButton.setOnClickListener {
-                val intent = Intent(
-                    Intent.ACTION_VIEW,
-                    Uri.parse("https://www.youtube.com/watch?v=" + videoId + "#t=" + youtubePlayerSeekBar.seekBar.progress)
-                )
-                try {
-                    youTubeButton.context.startActivity(intent)
-                } catch (e: Exception) {
-                    Log.e(javaClass.simpleName, e.message ?: "Can't open url to YouTube")
-                }
-            }
+
         }
     }
 
     init {
-        onFullscreenButtonListener = View.OnClickListener {
-            isMatchParent = !isMatchParent
-            when (isMatchParent) {
-                true -> youTubePlayerView.matchParent()
-                false -> youTubePlayerView.wrapContent()
-            }
-        }
-
-        onMenuButtonClickListener = View.OnClickListener { youTubePlayerMenu.show(menuButton) }
-
         initClickListeners()
     }
 
@@ -141,8 +100,12 @@ class CustomYoutubePlayerUiController(private val youTubePlayerView: YouTubePlay
         }
         panel.setOnClickListener { fadeControlsContainer.toggleVisibility() }
         playPauseButton.setOnClickListener { onPlayButtonPressed() }
-        fullscreenButton.setOnClickListener { onFullscreenButtonListener.onClick(fullscreenButton) }
-        menuButton.setOnClickListener { onMenuButtonClickListener.onClick(menuButton) }
+    }
+
+    fun panelShow() {
+        if (controlsContainer.visibility != View.VISIBLE) {
+            panel.performClick()
+        }
     }
 
     override fun showVideoTitle(show: Boolean): PlayerUiController {
@@ -178,8 +141,6 @@ class CustomYoutubePlayerUiController(private val youTubePlayerView: YouTubePlay
         icon: Drawable,
         clickListener: View.OnClickListener?
     ): PlayerUiController {
-        customActionLeft.setImageDrawable(icon)
-        customActionLeft.setOnClickListener(clickListener)
         showCustomAction1(true)
         return this
     }
@@ -188,31 +149,23 @@ class CustomYoutubePlayerUiController(private val youTubePlayerView: YouTubePlay
         icon: Drawable,
         clickListener: View.OnClickListener?
     ): PlayerUiController {
-        customActionRight.setImageDrawable(icon)
-        customActionRight.setOnClickListener(clickListener)
         showCustomAction2(true)
         return this
     }
 
     override fun showCustomAction1(show: Boolean): PlayerUiController {
-        isCustomActionLeftEnabled = show
-        customActionLeft.visibility = if (show) View.VISIBLE else View.GONE
         return this
     }
 
     override fun showCustomAction2(show: Boolean): PlayerUiController {
-        isCustomActionRightEnabled = show
-        customActionRight.visibility = if (show) View.VISIBLE else View.GONE
         return this
     }
 
     override fun showMenuButton(show: Boolean): PlayerUiController {
-        menuButton.visibility = if (show) View.VISIBLE else View.GONE
         return this
     }
 
     override fun setMenuButtonClickListener(customMenuButtonClickListener: View.OnClickListener): PlayerUiController {
-        onMenuButtonClickListener = customMenuButtonClickListener
         return this
     }
 
@@ -237,33 +190,28 @@ class CustomYoutubePlayerUiController(private val youTubePlayerView: YouTubePlay
     }
 
     override fun showYouTubeButton(show: Boolean): PlayerUiController {
-        youTubeButton.visibility = if (show) View.VISIBLE else View.GONE
         return this
     }
 
     override fun addView(view: View): PlayerUiController {
-        extraViewsContainer.addView(view, 0)
         return this
     }
 
     override fun removeView(view: View): PlayerUiController {
-        extraViewsContainer.removeView(view)
         return this
     }
 
     override fun getMenu(): YouTubePlayerMenu = youTubePlayerMenu
 
     override fun showFullscreenButton(show: Boolean): PlayerUiController {
-        fullscreenButton.visibility = if (show) View.VISIBLE else View.GONE
         return this
     }
 
     override fun setFullscreenButtonClickListener(customFullscreenButtonClickListener: View.OnClickListener): PlayerUiController {
-        onFullscreenButtonListener = customFullscreenButtonClickListener
         return this
     }
 
-    private fun onPlayButtonPressed() {
+    fun onPlayButtonPressed() {
         if (isPlaying)
             youTubePlayer.pause()
         else
@@ -284,5 +232,9 @@ class CustomYoutubePlayerUiController(private val youTubePlayerView: YouTubePlay
     private fun updatePlayPauseButtonIcon(playing: Boolean) {
         val drawable = if (playing) R.drawable.ayp_ic_pause_36dp else R.drawable.ayp_ic_play_36dp
         playPauseButton.setImageResource(drawable)
+    }
+
+    fun focusPlayPauseButton() {
+        playPauseButton.requestFocus()
     }
 }

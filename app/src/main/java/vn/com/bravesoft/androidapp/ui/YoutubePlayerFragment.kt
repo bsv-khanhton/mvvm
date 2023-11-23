@@ -25,6 +25,7 @@ class YoutubePlayerFragment : BaseFragment(R.layout.youtube_layer_layout) {
     private var mYouTubePlayer: YouTubePlayer? = null
     private var videoID: String by argument()
     private var playerState: PlayerConstants.PlayerState = PlayerConstants.PlayerState.UNKNOWN
+    private var defaultPlayerUiController: CustomYoutubePlayerUiController? = null
 
     companion object {
         fun newInstance(videoID: String): YoutubePlayerFragment = YoutubePlayerFragment().apply {
@@ -34,7 +35,7 @@ class YoutubePlayerFragment : BaseFragment(R.layout.youtube_layer_layout) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //lifecycle.addObserver(binding.youtubePlayerView)
+        lifecycle.addObserver(binding.youtubePlayerView)
     }
 
     override fun init(view: View) {
@@ -45,13 +46,13 @@ class YoutubePlayerFragment : BaseFragment(R.layout.youtube_layer_layout) {
         binding.youtubePlayerView.initialize( object : AbstractYouTubePlayerListener() {
             override fun onReady(youTubePlayer: YouTubePlayer) {
                 mYouTubePlayer = youTubePlayer
-                val defaultPlayerUiController =
+                defaultPlayerUiController =
                     CustomYoutubePlayerUiController(binding.youtubePlayerView, youTubePlayer)
-                binding.youtubePlayerView.setCustomPlayerUi(defaultPlayerUiController.rootView)
-                defaultPlayerUiController.enableLiveVideoUi(false)
-                defaultPlayerUiController.setVideoTitle("Title of video")
-                defaultPlayerUiController.showYouTubeButton(false)
-                defaultPlayerUiController.showFullscreenButton(false)
+                binding.youtubePlayerView.setCustomPlayerUi(defaultPlayerUiController!!.rootView)
+                defaultPlayerUiController?.enableLiveVideoUi(false)
+                defaultPlayerUiController?.setVideoTitle("Title of video")
+                defaultPlayerUiController?.showYouTubeButton(false)
+                defaultPlayerUiController?.showFullscreenButton(false)
                 mYouTubePlayer?.loadVideo(videoID, 0f)
             }
 
@@ -68,13 +69,8 @@ class YoutubePlayerFragment : BaseFragment(R.layout.youtube_layer_layout) {
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMessageEvent(event: KeyEventBus?) {
         "onMessageEvent: ${event?.keyCode}".logi()
-        if (event?.keyCode == KeyEvent.KEYCODE_ENTER) {
-            if (playerState != PlayerConstants.PlayerState.PLAYING) {
-                mYouTubePlayer?.play()
-            } else {
-                mYouTubePlayer?.pause()
-            }
-        }
+        defaultPlayerUiController?.panelShow()
+        defaultPlayerUiController?.focusPlayPauseButton()
     }
 
     override fun onStart() {

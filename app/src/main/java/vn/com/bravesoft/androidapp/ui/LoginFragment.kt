@@ -106,7 +106,7 @@ class LoginFragment : BaseMVVMFragment<LoginModelView>(R.layout.login_layout) {
     }
 
     private fun openWebView() {
-        mMainActivity?.replaceFragment(WebViewFragment.newInstance(null))
+        mMainActivity?.replaceFragment(Test())
     }
 
     private fun openVideoList() {
