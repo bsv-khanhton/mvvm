@@ -242,7 +242,7 @@ class PlayerActivity : BrightcovePlayer() {
                 } else {
                     play.isSelected = isPlaying
                     play.visible(true)
-                    if (replayButton.hasFocus()) play.requestFocus()
+                    //if (replayButton.hasFocus()) play.requestFocus()
                     replayButton.visible(false)
                     rewindButton.visible(true)
                     forwardButton.visible(true)

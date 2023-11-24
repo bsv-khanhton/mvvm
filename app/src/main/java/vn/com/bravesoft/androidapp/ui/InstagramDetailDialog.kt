@@ -5,24 +5,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import androidx.annotation.NonNull
 import androidx.annotation.Nullable
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
-import com.brightcove.player.model.DeliveryType
-import com.brightcove.player.model.Video
-import com.brightcove.player.view.BrightcoveExoPlayerVideoView
+import com.google.android.exoplayer2.ExoPlayer
+import com.google.android.exoplayer2.MediaItem
+import com.google.android.exoplayer2.ui.StyledPlayerView
 import vn.com.bravesoft.androidapp.R
 import vn.com.bravesoft.androidapp.ext.load
 import vn.com.bravesoft.androidapp.ext.reactiveClick
 import vn.com.bravesoft.androidapp.ext.visible
 import vn.com.bravesoft.androidapp.view.InstagramImageView
-import java.net.URI
-import java.net.URISyntaxException
+
 
 class InstagramDetailDialog : DialogFragment() {
     private var btnClose: Button? = null
     private var ivInstagramDetail: InstagramImageView? = null
-    private var brightcoveExoPlayerVideoView: BrightcoveExoPlayerVideoView? = null
+    private var playerView: StyledPlayerView? = null
+    private var ivMute: ImageView? = null
+    private var viewVideoPlayer: View? = null
+    private var isMute = false
+    private var player: ExoPlayer? = null
 
     @Nullable
     override fun onCreateView(
@@ -38,7 +43,9 @@ class InstagramDetailDialog : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         btnClose = view.findViewById(R.id.btnClose)
         ivInstagramDetail = view.findViewById(R.id.ivInstagramDetail)
-        brightcoveExoPlayerVideoView = view.findViewById(R.id.brightcove_video_view)
+        playerView = view.findViewById(R.id.video_view)
+        ivMute = view.findViewById(R.id.ivMute)
+        viewVideoPlayer = view.findViewById(R.id.viewVideoPlayer)
         btnClose?.reactiveClick {
             dismiss()
         }
@@ -47,19 +54,39 @@ class InstagramDetailDialog : DialogFragment() {
         val mediaType = arguments?.getString("media_type")
         if (mediaType == "IMAGE") {
             ivInstagramDetail?.visible(true)
-            brightcoveExoPlayerVideoView?.visible(false)
+            viewVideoPlayer?.visible(false)
             ivInstagramDetail?.load(mediaUrl)
         } else {
             ivInstagramDetail?.visible(false)
-            brightcoveExoPlayerVideoView?.visible(true)
-            val video2: Video = Video.createVideo(
-                mediaUrl!!,
-                DeliveryType.MP4
-            )
-            brightcoveExoPlayerVideoView?.mediaController = null
-            brightcoveExoPlayerVideoView?.add(video2)
-            brightcoveExoPlayerVideoView?.start()
-            brightcoveExoPlayerVideoView?.brightcoveMediaController
+            viewVideoPlayer?.visible(true)
+            player = ExoPlayer.Builder(requireContext()).build()
+            playerView?.player = player
+            val mediaItem: MediaItem = MediaItem.fromUri(mediaUrl!!)
+            player?.setMediaItem(mediaItem)
+            player?.prepare()
+            player?.play()
+
+            ivMute?.reactiveClick {
+                if (isMute) {
+                    player?.volume = 1.0f
+                    ivMute?.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_unmute))
+                } else {
+                    player?.volume = 0.0f
+                    ivMute?.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_mute))
+                }
+                isMute = !isMute
+            }
         }
+        btnClose?.requestFocus()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        player?.pause()
+    }
+
+    override fun onDestroy() {
+        player?.stop()
+        super.onDestroy()
     }
 }
