@@ -23,9 +23,9 @@ import kotlin.time.toDuration
 
 class PlayerActivity : BrightcovePlayer() {
     private var bindingController: VideoPlayerControllerBinding? = null
-    /*var timer: TextView? = null
+    var timer: TextView? = null
     var timer2: TextView? = null
-    var timer3: TextView? = null*/
+    var timer3: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,9 +36,9 @@ class PlayerActivity : BrightcovePlayer() {
             R.layout.video_player_controller
         )
         val tvTitle = baseVideoView.findViewById<TextView>(R.id.title_text_view)
-        /*timer = findViewById<TextView>(R.id.timer)
+        timer = findViewById<TextView>(R.id.timer)
         timer2 = findViewById<TextView>(R.id.timer2)
-        timer3 = findViewById<TextView>(R.id.timer3)*/
+        timer3 = findViewById<TextView>(R.id.timer3)
         tvTitle?.text = "Title demo video"
         baseVideoView.setMediaController(mediaController)
         bindingController = VideoPlayerControllerBinding.bind(
@@ -98,8 +98,8 @@ class PlayerActivity : BrightcovePlayer() {
             e.printStackTrace()
         }
         val video2: Video = Video.createVideo(
-            "https://www.youtube.com/watch?v=aTL1OpomRhk&ab_channel=PickerSoft",
-            DeliveryType.UNKNOWN
+            "https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8",
+            DeliveryType.HLS
         )
         try {
             val myposterImage =
@@ -110,7 +110,7 @@ class PlayerActivity : BrightcovePlayer() {
             e.printStackTrace()
         }
 
-        // baseVideoView.add(video)
+        baseVideoView.add(video)
         baseVideoView.add(video2)
         baseVideoView.start()
 
@@ -167,7 +167,7 @@ class PlayerActivity : BrightcovePlayer() {
         }
     }
 
-    /*override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         val keyRewind = KeyEvent.KEYCODE_MEDIA_REWIND
         val keyPlayStop = KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE
         val keyForward = KeyEvent.KEYCODE_MEDIA_FAST_FORWARD
@@ -177,7 +177,7 @@ class PlayerActivity : BrightcovePlayer() {
             keyForward -> forward()
         }
         return super.onKeyDown(keyCode, event)
-    }*/
+    }
 
     private fun playPause() {
         if (baseVideoView.isPlaying && baseVideoView.canPause()) {
@@ -195,6 +195,8 @@ class PlayerActivity : BrightcovePlayer() {
 
     private fun rewind(millisecond: Int = Constants.playerSeekMillisecond) {
         baseVideoView.apply {
+            timer2?.text = currentPositionLong.toInt().toDuration()
+            timer3?.text = (currentPositionLong - millisecond).toInt().toDuration()
             seekTo((currentPositionLong - millisecond).coerceAtLeast(0))
         }
     }
@@ -202,8 +204,8 @@ class PlayerActivity : BrightcovePlayer() {
     private fun forward(millisecond: Int = Constants.playerSeekMillisecond) {
         baseVideoView.apply {
             if (currentVideo == null) return@apply
-            //timer2?.text = currentPositionLong.toInt().toDuration()
-            //timer3?.text = (currentPositionLong + millisecond).toInt().toDuration()
+            timer2?.text = currentPositionLong.toInt().toDuration()
+            timer3?.text = (currentPositionLong + millisecond).toInt().toDuration()
             seekTo((currentPositionLong + millisecond).coerceAtMost(baseVideoView.durationLong))
         }
     }
@@ -215,7 +217,7 @@ class PlayerActivity : BrightcovePlayer() {
             bindingController?.apply {
                 endTimeTextView.text = baseVideoView.durationLong.toInt().toDuration()
                 currentTimeTextView.text = currentPositionLong.toInt().toDuration()
-                //timer?.text = currentPositionLong.toInt().toDuration()
+                timer?.text = currentPositionLong.toInt().toDuration()
                 playerSeekBar.max = baseVideoView.durationLong.toInt()
                 playerSeekBar.progress = currentPositionLong.toInt()
                 seekBar.max = baseVideoView.durationLong.toInt()
@@ -229,6 +231,9 @@ class PlayerActivity : BrightcovePlayer() {
                     rewindButton.visible(false)
                     forwardButton.visible(false)
                     audioTracks.nextFocusUpId = replayButton.id
+
+                    timer2?.text = 0.toDuration()
+                    timer3?.text = 0.toDuration()
 
                     baseVideoView.brightcoveMediaController?.apply {
                         show()

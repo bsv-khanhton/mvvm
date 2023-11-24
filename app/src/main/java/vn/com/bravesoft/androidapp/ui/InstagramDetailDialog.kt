@@ -59,6 +59,7 @@ class InstagramDetailDialog : DialogFragment() {
             brightcoveExoPlayerVideoView?.mediaController = null
             brightcoveExoPlayerVideoView?.add(video2)
             brightcoveExoPlayerVideoView?.start()
+            brightcoveExoPlayerVideoView?.brightcoveMediaController
         }
     }
 }

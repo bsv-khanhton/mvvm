@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="@dimen/_200sdp"
     android:layout_height="wrap_content"
+    android:layout_gravity="center"
     android:orientation="vertical">
     <FrameLayout
         android:layout_width="match_parent"
@@ -13,13 +14,24 @@
             android:layout_width="@dimen/_200sdp"
             android:layout_height="@dimen/_200sdp"
             android:scaleType="centerCrop"/>
-        <com.brightcove.player.view.BrightcoveExoPlayerVideoView
-            android:id="@+id/brightcove_video_view"
+        <FrameLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            />
-
+            android:layout_height="wrap_content">
+            <com.brightcove.player.view.BrightcoveExoPlayerVideoView
+                android:id="@+id/brightcove_video_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                />
+            <Button
+                android:id="@+id/ivMute"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_margin="10dp"
+                android:text="Mute"
+                />
+        </FrameLayout>
     </FrameLayout>
     <Button
         android:id="@+id/btnClose"

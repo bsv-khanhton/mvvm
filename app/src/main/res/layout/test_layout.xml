@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="30dp"
     android:orientation="vertical">
     <RelativeLayout
@@ -39,6 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:nextFocusDown="@+id/player_seek_bar"
             android:stateListAnimator="@drawable/ut0710_video_player_controller_button_animator"
             android:text="button 3"/>
         <Button
@@ -51,5 +53,18 @@
             android:text="button 4"/>
 
     </RelativeLayout>
+
+    <com.brightcove.player.mediacontroller.BrightcoveSeekBar
+        android:id="@+id/player_seek_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="32dp"
+        android:alpha="1"
+        android:nextFocusUp="@+id/button1"
+        android:indeterminateDrawable="@drawable/player_progress"
+        android:maxHeight="6dp"
+        android:progressDrawable="@drawable/player_progress"
+        android:thumb="@drawable/ut0710_video_player_controller_seekbar_thumb_icon"/>
 
 </LinearLayout>
