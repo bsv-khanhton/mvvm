@@ -4,6 +4,7 @@ import dagger.Subcomponent
 import vn.com.bravesoft.androidapp.di.scope.UiScope
 import vn.com.bravesoft.androidapp.ui.InstagramListFragment
 import vn.com.bravesoft.androidapp.ui.LoginFragment
+import vn.com.bravesoft.androidapp.ui.SplashScreen
 
 /**
  * @author ex-cellpromote-ohta
@@ -12,6 +13,7 @@ import vn.com.bravesoft.androidapp.ui.LoginFragment
 @Subcomponent(modules = [FragmentModule::class])
 interface FragmentComponent {
 
+    fun inject(fragment: SplashScreen)
     fun inject(fragment: LoginFragment)
     fun inject(fragment: InstagramListFragment)
 

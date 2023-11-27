@@ -15,12 +15,13 @@ import vn.com.bravesoft.androidapp.R
 import vn.com.bravesoft.androidapp.base.BaseFragment
 import vn.com.bravesoft.androidapp.databinding.YoutubeLayerLayoutBinding
 import vn.com.bravesoft.androidapp.event.KeyEventBus
+import vn.com.bravesoft.androidapp.event.YoutubePlayerCallBack
 import vn.com.bravesoft.androidapp.ext.argument
 import vn.com.bravesoft.androidapp.ext.logi
 import vn.com.bravesoft.androidapp.view.MyYoutubePlayerUiController
 
 
-class YoutubePlayerFragment : BaseFragment(R.layout.youtube_layer_layout) {
+class YoutubePlayerFragment : BaseFragment(R.layout.youtube_layer_layout), YoutubePlayerCallBack {
     private val binding: YoutubeLayerLayoutBinding by viewBinding()
     private var mYouTubePlayer: YouTubePlayer? = null
     private var videoID: String by argument()
@@ -49,13 +50,14 @@ class YoutubePlayerFragment : BaseFragment(R.layout.youtube_layer_layout) {
             override fun onReady(youTubePlayer: YouTubePlayer) {
                 mYouTubePlayer = youTubePlayer
                 defaultPlayerUiController =
-                    MyYoutubePlayerUiController(binding.youtubePlayerView, youTubePlayer)
+                    MyYoutubePlayerUiController(binding.youtubePlayerView, youTubePlayer, this@YoutubePlayerFragment)
                 binding.youtubePlayerView.setCustomPlayerUi(defaultPlayerUiController!!.rootView)
                 defaultPlayerUiController?.enableLiveVideoUi(false)
                 defaultPlayerUiController?.setVideoTitle("Title of video")
                 defaultPlayerUiController?.showYouTubeButton(false)
                 defaultPlayerUiController?.showFullscreenButton(false)
                 mYouTubePlayer?.loadVideo(videoID, 0f)
+                resetCountdownCloseController()
             }
 
             override fun onStateChange(
@@ -65,6 +67,10 @@ class YoutubePlayerFragment : BaseFragment(R.layout.youtube_layer_layout) {
                 super.onStateChange(youTubePlayer, state)
                 defaultPlayerUiController?.updateState(state)
                 playerState = state
+                if (state == PlayerConstants.PlayerState.PAUSED) {
+                    defaultPlayerUiController?.showHidePanel(true)
+                    resetCountdownCloseController()
+                }
             }
 
             override fun onCurrentSecond(youTubePlayer: YouTubePlayer, second: Float) {
@@ -83,8 +89,6 @@ class YoutubePlayerFragment : BaseFragment(R.layout.youtube_layer_layout) {
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMessageEvent(event: KeyEventBus?) {
         "onMessageEvent: ${event?.keyCode}".logi()
-        /*defaultPlayerUiController?.panelShow()
-        defaultPlayerUiController?.focusPlayPauseButton()*/
         defaultPlayerUiController?.showHidePanel(true)
         resetCountdownCloseController()
     }
@@ -102,9 +106,7 @@ class YoutubePlayerFragment : BaseFragment(R.layout.youtube_layer_layout) {
     private fun resetCountdownCloseController() {
         countDownTimer?.cancel()
         countDownTimer = object: CountDownTimer(3000, 1000) {
-            override fun onTick(p0: Long) {
-
-            }
+            override fun onTick(p0: Long)= Unit
 
             override fun onFinish() {
                 defaultPlayerUiController?.showHidePanel(false)
@@ -117,5 +119,9 @@ class YoutubePlayerFragment : BaseFragment(R.layout.youtube_layer_layout) {
     override fun onDestroy() {
         super.onDestroy()
         countDownTimer?.cancel()
+    }
+
+    override fun youtubePlayerCallback() {
+        resetCountdownCloseController()
     }
 }

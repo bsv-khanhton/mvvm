@@ -9,16 +9,15 @@ import com.brightcove.player.mediacontroller.BrightcoveSeekBar
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.customui.PlayerUiController
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.customui.menu.YouTubePlayerMenu
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.customui.utils.TimeUtilities
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.customui.views.YouTubePlayerSeekBar
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import vn.com.bravesoft.androidapp.R
-import vn.com.bravesoft.androidapp.ext.logi
-import vn.com.bravesoft.androidapp.ext.toDuration
+import vn.com.bravesoft.androidapp.event.YoutubePlayerCallBack
 
 class MyYoutubePlayerUiController(private val youTubePlayerView: YouTubePlayerView,
-                                  private val youTubePlayer: YouTubePlayer
+                                  private val youTubePlayer: YouTubePlayer,
+                                  private val youtubePlayerCallBack: YoutubePlayerCallBack
 ) : PlayerUiController {
     val rootView: View = View.inflate(youTubePlayerView.context, R.layout.my_youtube_controller_layout, null)
 
@@ -54,7 +53,9 @@ class MyYoutubePlayerUiController(private val youTubePlayerView: YouTubePlayerVi
                     progress: Int,
                     fromUser: Boolean
                 ) {
-                    "-------fromUser: $fromUser".logi()
+                    if (fromUser) {
+                        youtubePlayerCallBack.youtubePlayerCallback()
+                    }
                 }
 
                 override fun onStartTrackingTouch(seekBar: SeekBar?) {
@@ -205,6 +206,7 @@ class MyYoutubePlayerUiController(private val youTubePlayerView: YouTubePlayerVi
             rootView.alpha = 1.0f
         } else {
             rootView.alpha = 0f
+            playPauseButton.requestFocus()
         }
 
     }

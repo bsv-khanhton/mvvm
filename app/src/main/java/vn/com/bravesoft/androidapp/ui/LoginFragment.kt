@@ -46,7 +46,7 @@ class LoginFragment : BaseMVVMFragment<LoginModelView>(R.layout.login_layout) {
         viewModel?.onLoginSuccessed?.observe(
             this,
             Observer { s ->
-                fragmentAggregator.openMainTabHost(s)
+                fragmentAggregator.openMainTabHost()
             }
         )
     }

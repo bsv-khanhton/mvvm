@@ -52,7 +52,7 @@
             android:src="@drawable/ayp_ic_play_36dp"
             android:visibility="invisible"
             android:padding="8dp"
-            android:stateListAnimator="@drawable/ut0710_video_player_controller_button_animator"
+            android:stateListAnimator="@drawable/video_player_controller_button_animator"
             android:background="@drawable/ayp_background_item_selected"
             android:layout_centerInParent="true"
             android:focusable="true"

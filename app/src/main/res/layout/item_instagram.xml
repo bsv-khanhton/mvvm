@@ -18,5 +18,5 @@
         android:layout_gravity="center"
         android:visibility="gone"
         tools:visibility="visible"
-        android:src="@drawable/ut0710_video_player_controller_play_button"/>
+        android:src="@drawable/video_player_controller_play_button"/>
 </FrameLayout>

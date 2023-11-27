@@ -20,7 +20,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
             android:layout_height="84dp"
-            android:background="@drawable/ut0710_video_player_controller_title_background"
+            android:background="@drawable/video_player_controller_title_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -51,8 +51,8 @@
             android:id="@id/play"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:background="@drawable/ut0710_video_player_controller_play_button_selector"
-            android:stateListAnimator="@drawable/ut0710_video_player_controller_button_animator"
+            android:background="@drawable/video_player_controller_play_button_selector"
+            android:stateListAnimator="@drawable/video_player_controller_button_animator"
             android:text=""
             android:focusable="true"
             android:focusableInTouchMode="true"
@@ -133,7 +133,7 @@
             android:indeterminateDrawable="@drawable/player_progress"
             android:maxHeight="6dp"
             android:progressDrawable="@drawable/player_progress"
-            android:thumb="@drawable/ut0710_video_player_controller_seekbar_thumb_icon"
+            android:thumb="@drawable/video_player_controller_seekbar_thumb_icon"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

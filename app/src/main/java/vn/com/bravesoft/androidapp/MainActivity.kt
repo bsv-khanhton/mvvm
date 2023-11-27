@@ -12,6 +12,7 @@ import vn.com.bravesoft.androidapp.base.BaseFragment
 import vn.com.bravesoft.androidapp.event.KeyEventBus
 import vn.com.bravesoft.androidapp.ext.logi
 import vn.com.bravesoft.androidapp.ui.LoginFragment
+import vn.com.bravesoft.androidapp.ui.SplashScreen
 import vn.com.bravesoft.androidapp.utils.FragmentUtil
 
 class MainActivity : FragmentActivity() {
@@ -23,7 +24,7 @@ class MainActivity : FragmentActivity() {
         setContentView(R.layout.activity_main)
         mFragmentManager = supportFragmentManager
         mFragmentUtil = FragmentUtil.instance
-        replaceFragment(LoginFragment())
+        replaceFragment(SplashScreen.newInstance())
         // "test fastlane2".logi()
     }
 
@@ -42,7 +43,7 @@ class MainActivity : FragmentActivity() {
         if (isClearBacktrack) {
             mFragmentUtil.resetBackstack(mFragmentManager)
         }
-        mFragmentUtil.replaceFragment(mFragmentManager, fragment, R.id.main_activity_container)
+        mFragmentUtil.replaceFragmentImmediate(mFragmentManager, fragment, R.id.main_activity_container)
     }
 
     fun replaceFragmentTest(fragment: Fragment, isClearBacktrack: Boolean) {

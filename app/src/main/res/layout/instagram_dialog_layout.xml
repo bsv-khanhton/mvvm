@@ -35,7 +35,7 @@
                 android:focusable="true"
                 android:rotation="180"
                 android:focusableInTouchMode="true"
-                android:stateListAnimator="@drawable/ut0710_video_player_controller_button_animator"
+                android:stateListAnimator="@drawable/video_player_controller_button_animator"
                 android:src="@drawable/ic_unmute"
                 />
         </FrameLayout>
