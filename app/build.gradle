@@ -42,12 +42,12 @@ task ktlintFormat(type: JavaExec, group: "formatting") {
 
 android {
     flavorDimensions "default"
-    compileSdkVersion 31
-    buildToolsVersion "30.0.2"
+    compileSdkVersion 33
+    buildToolsVersion "33.0.2"
     defaultConfig {
         applicationId "com.bsv.testpush"
         minSdkVersion 21
-        targetSdkVersion 31
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -85,6 +85,7 @@ android {
             buildConfigField "String", "URL_API", '"https://jsonplaceholder.typicode.com"'
         }
     }
+    namespace 'vn.com.bravesoft.androidapp'
     applicationVariants.all { variant ->
 
         if (variant.getName().contains("dev")) {
@@ -115,6 +116,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    kapt "org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.4.2"
 
     //retrofit load api
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
