@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         mFragmentManager = supportFragmentManager
         mFragmentUtil = FragmentUtil.instance
-        replaceFragment(LoginFragment())
+        replaceFragment(LoginFragment.newInstance())
         "test fastlane2".logi()
     }
 

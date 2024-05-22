@@ -13,7 +13,6 @@ import vn.com.bravesoft.androidapp.di.FragmentComponent
 import vn.com.bravesoft.androidapp.di.ViewModelFactory
 import vn.com.bravesoft.androidapp.ext.bindComponent
 import vn.com.bravesoft.androidapp.ext.getViewModel
-import vn.com.bravesoft.androidapp.ext.logi
 import vn.com.bravesoft.androidapp.ext.reactiveClick
 import vn.com.bravesoft.androidapp.helper.FragmentAggregator
 import vn.com.bravesoft.androidapp.model.UserDTO
@@ -42,7 +41,7 @@ class LoginFragment : BaseMVVMFragment<LoginModelView>(R.layout.login_layout) {
     }
 
     override fun setupObserveModelView(viewModel: LoginModelView?) {
-        viewModel?.onLoginSuccessed?.observe(
+        viewModel?.onLoginSuccess?.observe(
             this,
             Observer { s ->
                 fragmentAggregator.openMainTabHost(s)
@@ -54,7 +53,6 @@ class LoginFragment : BaseMVVMFragment<LoginModelView>(R.layout.login_layout) {
         binding.tvTitle.text = "MVVM"
         binding.btnLogin.reactiveClick {
             viewModel?.login(UserDTO("abc", "12343545"))
-            "Login sucsseed".logi()
         }
     }
 

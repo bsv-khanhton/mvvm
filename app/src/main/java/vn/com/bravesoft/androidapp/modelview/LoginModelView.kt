@@ -8,9 +8,9 @@ import vn.com.bravesoft.androidapp.rx.SingleLiveEvent
 import vn.com.bravesoft.androidapp.usecase.LoginUseCase
 import javax.inject.Inject
 
-class LoginModelView @Inject constructor(val useCase: LoginUseCase) : BaseModelView() {
+class LoginModelView @Inject constructor(private val useCase: LoginUseCase) : BaseModelView() {
 
-    val onLoginSuccessed: SingleLiveEvent<String> = SingleLiveEvent()
+    val onLoginSuccess: SingleLiveEvent<String> = SingleLiveEvent()
 
     fun login(user: UserDTO) {
         addSubscription(
@@ -18,7 +18,7 @@ class LoginModelView @Inject constructor(val useCase: LoginUseCase) : BaseModelV
             object : ApiConsumer<LoginResponse> {
                 override fun onSuccess(response: LoginResponse) {
                     if (response.status_code == 0) {
-                        onLoginSuccessed.setValue(response.title)
+                        onLoginSuccess.setValue(response.title)
                     } else {
                         onLoadAPIFail.setValue(response.message)
                     }
