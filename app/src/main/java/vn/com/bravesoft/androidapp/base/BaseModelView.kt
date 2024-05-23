@@ -12,19 +12,10 @@ import vn.com.bravesoft.androidapp.api.ApiConsumer as ApiConsumer
 abstract class BaseModelView : ViewModel() {
     private var mCompositeDisposable: CompositeDisposable? = null
 
-    val loadCompletionSubject: PublishSubject<Any> = PublishSubject.create()
+    private val loadCompletionSubject: PublishSubject<Any> = PublishSubject.create()
     val onShowLoading = SingleLiveEvent<Boolean>()
     val onLoadAPIFail = SingleLiveEvent<String>()
     val onLoadAPIError = SingleLiveEvent<Throwable>()
-    val onSentMessage = SingleLiveEvent<Int>()
-
-    fun hideLoading() {
-        onShowLoading.setValue(false)
-    }
-
-    fun showLoading() {
-        onShowLoading.setValue(true)
-    }
 
     fun loading(isLoading: Boolean) {
         onShowLoading.setValue(isLoading)
@@ -34,8 +25,8 @@ abstract class BaseModelView : ViewModel() {
         onUnsubscribe()
     }
 
-    // RXjava
-    fun onUnsubscribe() {
+    // RXJava
+    private fun onUnsubscribe() {
         if (mCompositeDisposable != null && mCompositeDisposable?.size() ?: 0 > 0) {
             mCompositeDisposable?.clear()
             mCompositeDisposable = null

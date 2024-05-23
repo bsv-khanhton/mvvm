@@ -34,7 +34,7 @@ abstract class BaseMVVMFragment<M : BaseModelView>(rootLayout: Int) :
         viewModel?.onShowLoading?.observe(
             viewLifecycleOwner,
             Observer { isShow ->
-                if (isShow == true) {
+                if (isShow) {
                     showLoading()
                 } else {
                     hideLoading()
